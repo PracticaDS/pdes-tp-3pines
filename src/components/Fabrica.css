@@ -1,0 +1,22 @@
+.fabrica-contenedor {	
+	display: grid;
+	/* diez columnas */
+  grid-template-columns: 55px 55px 55px 55px 55px 55px 55px 55px 55px 55px; 
+	/* diez filas */
+	grid-template-rows: 55px 55px 55px 55px 55px 55px 55px 55px 55px 55px; 
+
+  /* diez columnas x diez filas de 55px*55px c/u  */
+  width: 550px; 
+  height: 550px;
+
+  border: 1px solid #2d2d3e;
+}
+
+.celda {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+  background-color: #f1efff;
+  border: 1px solid #cedae9;
+}

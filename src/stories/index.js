@@ -6,6 +6,8 @@ import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
 
+import { Fabrica } from '../components/Fabrica.js'
+
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 storiesOf('Button', module)
@@ -17,3 +19,5 @@ storiesOf('Button', module)
       </span>
     </Button>
   ));
+
+storiesOf('Fabrica', module).add('con columnas', () => <Fabrica/>);

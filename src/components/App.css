@@ -1,0 +1,9 @@
+.app-contenedor {
+	margin-top: 20px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}

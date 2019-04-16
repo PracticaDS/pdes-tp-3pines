@@ -1,0 +1,20 @@
+.fabrica-contenedor {	
+  display: grid;
+  
+  grid-template-columns: repeat(10, 55px);
+	grid-template-rows: repeat(10, 55px);
+  
+  width: 550px; 
+  height: 550px;
+
+  border: 1px solid #2d2d3e;
+}
+
+.celda {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+  background-color: #f1efff;
+  border: 1px solid #cedae9;
+}

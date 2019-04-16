@@ -10,13 +10,7 @@ export const Celda = (props) => {
 } 
 
 const crearGrilla = () => {
-  let rows = [];
-  for (let i = 1; i <= 100; i++) {
-    rows.push({id: i});
-  }
-  return rows.map((item) => (
-    <Celda id={item.id} key={item.id}/>
-  ));
+  return Array.from(Array(100)).map((_, index) => <Celda id={index} key={index}/>)
 } 
 
 export const Fabrica = (props) => { 

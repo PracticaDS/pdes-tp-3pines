@@ -1,10 +1,7 @@
 import React from 'react'
 import { shallow, mount, render } from 'enzyme'
 import { Fabrica, Celda } from '../components/Fabrica'
-import { configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
+import '../setupTest.js'
 
 describe('<Fabrica />', () => {
   it('se monta como corresponde', () => {

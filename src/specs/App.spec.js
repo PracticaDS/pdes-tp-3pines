@@ -1,12 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from '../components/App';
 import { Fabrica } from '../components/Fabrica'
 import { shallow, mount, render } from 'enzyme'
-import { configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
+import '../setupTest.js'
 
 describe('<App />', () => {
   it('se monta como corresponde', () => {

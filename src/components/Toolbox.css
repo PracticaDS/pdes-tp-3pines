@@ -1,0 +1,27 @@
+.toolbox-contenedor {
+	display: flex;
+	flex-direction: column;
+
+	width: 100px;
+	height: 500px;
+}
+
+.maquinas-contenedor {
+	display: flex;
+	flex-direction: column;
+
+	width: 150px;
+	height: 250px;	
+
+  background-color: #f1efff;
+}
+
+.acciones-contenedor {
+	display: flex;
+	flex-direction: column;
+
+	width: 150px;
+	height: 250px;	
+
+  background-color: #f1efff;
+}

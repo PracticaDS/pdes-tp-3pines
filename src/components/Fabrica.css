@@ -1,4 +1,6 @@
 .fabrica-contenedor {	
+  grid-area: main;
+
   display: grid;
   
   grid-template-columns: repeat(10, 55px);

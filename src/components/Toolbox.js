@@ -4,11 +4,15 @@ import './Toolbox.css';
 export const Toolbox = (props) => { 
   return (
     <div className="toolbox-contenedor">
-    	Máquinas
-	    <div className="maquinas-contenedor">
+      <div className="maquinas-contenedor borde-piola">
+      	<div className="titulo">Máquinas</div>
+  	    <div className="toolbox-maquinas">
+      </div>
 	    </div>
-      Acciones
-	    <div className="acciones-contenedor">
+      <div className="acciones-contenedor borde-piola">
+        <div className="titulo">Acciones</div>
+  	    <div className="toolbox-acciones">
+      </div>
     	</div>
     </div>
   )

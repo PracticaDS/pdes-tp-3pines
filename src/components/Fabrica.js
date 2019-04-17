@@ -3,9 +3,7 @@ import './Fabrica.css';
 
 export const Celda = (props) => { 
   return (
-    <div id={"celda-"+props.id } className="celda">
-      { props.id }
-    </div>
+    <div id={"celda-"+props.id } className="celda"/>
   )
 } 
 

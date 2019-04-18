@@ -1,0 +1,16 @@
+.detalle-contenedor {
+  grid-area: sidebar-right;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+}
+
+.detalle-contenido {
+  width: 250px;
+  height: 500px;
+  margin: 4px 0 10px 0;
+  background-color: #f1efff;
+}

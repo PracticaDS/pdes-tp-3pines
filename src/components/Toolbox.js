@@ -1,17 +1,18 @@
 import React from 'react';
-import './Toolbox.css';
+import '../styles/Toolbox.css';
+import '../styles/_compartido.css';
 
 export const Toolbox = (props) => { 
   return (
     <div className="toolbox-contenedor">
-      <div className="maquinas-contenedor borde-piola">
+      <div className="maquinas-contenedor">
       	<div className="titulo">Máquinas</div>
-  	    <div className="toolbox-maquinas">
+  	    <div className="toolbox-maquinas borde-piola">
       </div>
 	    </div>
-      <div className="acciones-contenedor borde-piola">
+      <div className="acciones-contenedor">
         <div className="titulo">Acciones</div>
-  	    <div className="toolbox-acciones">
+  	    <div className="toolbox-acciones borde-piola">
       </div>
     	</div>
     </div>

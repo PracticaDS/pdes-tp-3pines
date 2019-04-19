@@ -4,7 +4,7 @@ import { Fabrica } from '../components/Fabrica'
 import { Toolbox } from '../components/Toolbox';
 import { Detalle } from '../components/Detalle';
 import { shallow } from 'enzyme'
-import '../setupTest.js'
+import '../setupTests.js'
 
 describe('<App />', () => {
   it('se monta como corresponde', () => {

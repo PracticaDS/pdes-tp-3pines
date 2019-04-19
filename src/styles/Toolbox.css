@@ -4,8 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  width: 100%;
 }
 
 .acciones-contenedor {
@@ -14,9 +12,25 @@
 }
 
 .toolbox-acciones {
+  display: flex;
+  flex-direction: column;
+
   width: 150px;
-  height: 250px;
+  height: 100%;
   margin: 4px 0 10px 0;
   background-color: #f1efff;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.accion {
+  width: 50px;
+  height: 50px;
+  margin: 8px 13px 8px 12px;
+}
+.accion:hover {
+  cursor: pointer;
+}

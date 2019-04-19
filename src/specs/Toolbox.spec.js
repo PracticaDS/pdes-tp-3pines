@@ -10,12 +10,32 @@ describe('<Toolbox />', () => {
   	expect(wrapper.find('.toolbox-contenedor')).toHaveLength(1)
   })
 
-  it('tiene dos secciones con titulos', () => {
-    let wrapper = shallow(<Toolbox />)
+  describe('Secciones del Toolbox', () => {
 
-    expect(wrapper.find('.titulo')).toHaveLength(2)
+    it('tiene dos secciones con titulos', () => {
+      let wrapper = shallow(<Toolbox />)
 
-    expect(wrapper).toIncludeText('Máquinas')
-    expect(wrapper).toIncludeText('Edición')
+      expect(wrapper).toContainMatchingElements(2, '.titulo')
+      expect(wrapper).toIncludeText('Máquinas')
+      expect(wrapper).toIncludeText('Edición')
+    })
+
+    it('en total tiene 8 acciones', () => {
+      let wrapper = shallow(<Toolbox />)
+
+      expect(wrapper).toContainMatchingElements(8, '.accion')
+      expect(wrapper).toContainMatchingElements(8, 'img')
+    })
+
+    it('cuando se clickea una acción esta se pone activa', () => {
+      let wrapper = shallow(<Toolbox />)
+
+      let maquinaStarter = wrapper.find({alt: 'Starter'});
+
+      expect(maquinaStarter.prop("src")).toEqual('/icons/starter.svg');
+      maquinaStarter.simulate('click');
+      // TODO: expect(maquinaStarter.prop("src")).toEqual('/icons/starter-activo.svg');
+      // TODO: para hacer pasar este test es necesario cambiar la implementación
+    })
   })
 })

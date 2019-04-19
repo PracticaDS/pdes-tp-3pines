@@ -1,7 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Detalle } from '../components/Detalle'
-import '../setupTests.js'
+import { Detalle } from '../../components/Detalle'
+import { Maquina } from '../../models/Maquina';
+import '../../setupTests.js'
 
 describe('<Toolbox />', () => {
   it('se monta como corresponde', () => {
@@ -75,9 +76,5 @@ describe('<Toolbox />', () => {
 })
 
 function crearMaquina() {
-  return {
-    nombre: 'Starter',
-    costo: '10',
-    frecuencia: '1'
-  };
+  return new Maquina('Starter', '10', '1')
 }

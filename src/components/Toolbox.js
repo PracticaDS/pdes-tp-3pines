@@ -1,19 +1,24 @@
 import React from 'react';
 import '../styles/Toolbox.css';
 import '../styles/_compartido.css';
+import { ACCIONES, MAQUINAS } from '../Constantes';
 
 export const Toolbox = (props) => {
-  let rotarUrl =  process.env.PUBLIC_URL + '/icons/rotar.svg'
-  let eliminarUrl =  process.env.PUBLIC_URL + '/icons/eliminar.svg'
-  let moverUrl =  process.env.PUBLIC_URL + '/icons/mover.svg'
-  let starterUrl =  process.env.PUBLIC_URL + '/icons/starter.svg'
-  let sellerUrl =  process.env.PUBLIC_URL + '/icons/seller.svg'
-  let crafterUrl =  process.env.PUBLIC_URL + '/icons/crafter.svg'
-  let furnaceUrl =  process.env.PUBLIC_URL + '/icons/furnace.svg'
-  let transporterUrl =  process.env.PUBLIC_URL + '/icons/transporter.svg'
 
-  const activarDesactivarAccion = () => {
+  const agregarAcciones = () => {
+    return ACCIONES.map((accion, index) =>
+      <div key={`accion-${index}`}>
+        <img src={accion.imagenUrl} alt={accion.nombre} className="accion" onClick={() => { accion.activarDesactivar() }} />
+      </div>
+    )
+  }
 
+  const agregarMaquinas = () => {
+    return MAQUINAS.map((maquina, index) =>
+      <div key={`maquina-${index}`}>
+        <img src={maquina.imagenUrl} alt={maquina.nombre} className="accion" onClick={() => { maquina.activarDesactivar() }}/>
+      </div>
+    )
   }
 
   return (
@@ -23,25 +28,13 @@ export const Toolbox = (props) => {
       	<div className="titulo">Máquinas</div>
   	    <div className="toolbox-acciones borde-piola">
           <div className="row">
-            <div className="accion" onClick={activarDesactivarAccion("TODO: pasar la máquina a activar o desactivar por parametro")}>
-              <img src={starterUrl} alt="Starter"/>
-            </div>
-            <div className="accion">
-              <img src={sellerUrl} alt="Seller"/>
-            </div>
+            { agregarMaquinas().slice(0,2) }
           </div>
           <div className="row">
-            <div className="accion">
-              <img src={crafterUrl} alt="Crafter"/>
-            </div>
-            <div className="accion">
-              <img src={furnaceUrl} alt="Furnace"/>
-            </div>
+            { agregarMaquinas().slice(2,4) }
           </div>
           <div className="row">
-            <div className="accion">
-              <img src={transporterUrl} alt="Transporter"/>
-            </div>
+            { agregarMaquinas().slice(4,6) }
           </div>
         </div>
 	    </div>
@@ -50,17 +43,10 @@ export const Toolbox = (props) => {
         <div className="titulo">Edición</div>
   	    <div className="toolbox-acciones borde-piola">
           <div className="row">
-            <div className="accion">
-              <img src={eliminarUrl} alt="Eliminar"/>
-            </div>
-            <div className="accion">
-              <img src={moverUrl} alt="Mover"/>
-            </div>
+            { agregarAcciones().slice(0, 2) }
           </div>
           <div className="row">
-            <div className="accion">
-              <img src={rotarUrl} alt="Rotar"/>
-            </div>
+            { agregarAcciones().slice(2, 4) }
           </div>
         </div>
     	</div>

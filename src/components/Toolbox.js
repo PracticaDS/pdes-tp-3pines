@@ -1,5 +1,5 @@
 import React from 'react';
-import './Toolbox.css';
+import '../scss/Toolbox.scss';
 
 export const Toolbox = (props) => { 
   return (

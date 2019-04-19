@@ -7,8 +7,33 @@
 }
 
 .detalle-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
   width: 250px;
   height: 500px;
-  margin: 4px 0 10px 0;
+  margin-top: 4px;
   background-color: #f1efff;
+
+  color: #495163;
+}
+
+.nombre-maquina {
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+.costo-maquina {
+  margin-top: 8px;
+  margin-left: 16px;
+}
+
+.frecuencia-maquina {
+  margin-top: 8px;
+  margin-left: 16px;
+}
+
+span {
+  color: #bc4062;
 }

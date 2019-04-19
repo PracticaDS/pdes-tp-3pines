@@ -10,7 +10,7 @@ class App extends Component {
       <div className="app-contenedor">
       	<Toolbox />
         <Fabrica />
-        <Detalle />
+        <Detalle maquina={{nombre: 'Starter', costo: '800', frecuencia: 1}}/>
       </div>
     );
   }

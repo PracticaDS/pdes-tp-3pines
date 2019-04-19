@@ -7,11 +7,16 @@ export const Detalle = (props) => {
     <div className="detalle-contenedor">
       <div>
         <div className="titulo">Detalles</div>
-        <div className="detalle-contenido borde-piola">
-          <span className="nombre-maquina"></span>
-          <span className="costo-maquina"></span>
-          <span className="frecuencia-maquina"></span>
-        </div>
+        {
+          props.maquina ?
+            <div className="detalle-contenido borde-piola">
+              <div className="nombre-maquina">{props.maquina.nombre}</div>
+              <div className="costo-maquina">Costo: <span> ${props.maquina.costo} </span></div>
+              <div className="frecuencia-maquina">Frecuencia: <span> {props.maquina.frecuencia}/s </span></div>
+            </div>
+            :
+            <div className="detalle-contenido borde-piola"/>
+        }
       </div>
     </div>
   )

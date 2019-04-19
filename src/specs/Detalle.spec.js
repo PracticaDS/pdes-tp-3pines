@@ -16,7 +16,7 @@ describe('<Toolbox />', () => {
   	expect(wrapper.find('.titulo')).toHaveLength(1)
   })
 
-  describe('contenido de los detalles', () =>{
+  describe('contenido de los detalles', () => {
 
     it('tiene una seccion con el contenido de los detalles', () => {
     let wrapper = shallow(<Detalle />)
@@ -24,24 +24,60 @@ describe('<Toolbox />', () => {
       expect(wrapper.find('.detalle-contenido')).toHaveLength(1)
     })
 
+    describe('cuando NO tiene maquina asociada', () => {
 
-    it('aparece el nombre de la maquina que se selecciono', () => {
-      let wrapper = shallow(<Detalle />)
+      it('no aparece el nombre de la maquina que se selecciono', () => {
+        let wrapper = shallow(<Detalle />)
 
-      expect(wrapper.find('.nombre-maquina')).toHaveLength(1)
+        expect(wrapper.find('.nombre-maquina')).toHaveLength(0)
+      })
+
+      it('no aparece el costo de la maquina que se selecciono', () => {
+        let wrapper = shallow(<Detalle />)
+
+        expect(wrapper.find('.costo-maquina')).toHaveLength(0)
+      })
+
+      it('no aparece la frecuencia de la maquina que se selecciono', () => {
+        let wrapper = shallow(<Detalle />)
+
+        expect(wrapper.find('.frecuencia-maquina')).toHaveLength(0)
+      })
     })
 
+    describe('cuando tiene maquina asociada', () => {
 
-    it('aparece el costo de la maquina que se selecciono', () => {
-      let wrapper = shallow(<Detalle />)
+      it('aparece el nombre de la maquina que se selecciono', () => {
+        const maquina = crearMaquina()
+        let wrapper = shallow(<Detalle maquina={maquina} />)
 
-      expect(wrapper.find('.costo-maquina')).toHaveLength(1)
-    })
+        expect(wrapper.find('.nombre-maquina')).toHaveLength(1)
+        expect(wrapper).toIncludeText(maquina.nombre)
+      })
 
-    it('aparece la frecuencia de la maquina que se selecciono', () => {
-      let wrapper = shallow(<Detalle />)
+      it('aparece el costo de la maquina que se selecciono', () => {
+        const maquina = crearMaquina()
+        let wrapper = shallow(<Detalle maquina={maquina} />)
 
-      expect(wrapper.find('.frecuencia-maquina')).toHaveLength(1)
+        expect(wrapper.find('.costo-maquina')).toHaveLength(1)
+        expect(wrapper).toIncludeText(maquina.costo)
+      })
+
+      it('aparece la frecuencia de la maquina que se selecciono', () => {
+        const maquina = crearMaquina()
+        let wrapper = shallow(<Detalle maquina={maquina} />)
+
+        expect(wrapper.find('.frecuencia-maquina')).toHaveLength(1)
+        expect(wrapper).toIncludeText(maquina.frecuencia)
+      })
     })
   })
 })
+
+function crearMaquina() {
+  return {
+    nombre: 'Starter',
+    costo: '10',
+    frecuencia: '1'
+  };
+}

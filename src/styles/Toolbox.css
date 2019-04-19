@@ -8,18 +8,6 @@
   width: 100%;
 }
 
-.maquinas-contenedor {
-  display: flex;
-  flex-direction: column;
-}
-
-.toolbox-maquinas {
-  width: 150px;
-  height: 250px;
-  margin: 4px 0 10px 0;
-  background-color: #f1efff;
-}
-
 .acciones-contenedor {
   display: flex;
   flex-direction: column;

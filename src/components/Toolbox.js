@@ -1,23 +1,19 @@
 import React from 'react';
 import '../styles/Toolbox.css';
 import '../styles/_compartido.css';
-import { ACCIONES, MAQUINAS } from '../Constantes';
+import {ACCIONES, MAQUINAS} from '../constantes';
+import Accion from "./Accion";
 
-export const Toolbox = (props) => {
-
+export const Toolbox = () => {
   const agregarAcciones = () => {
     return ACCIONES.map((accion, index) =>
-      <div key={`accion-${index}`}>
-        <img src={accion.imagenUrl} alt={accion.nombre} className="accion" onClick={() => { accion.activarDesactivar() }} />
-      </div>
+      <Accion key={`accion-${index}`} nombre={accion.nombre} imagenActiva={accion.imagenActivaUrl} imagenInactiva={accion.imagenInactivaUrl}/>
     )
   }
 
   const agregarMaquinas = () => {
     return MAQUINAS.map((maquina, index) =>
-      <div key={`maquina-${index}`}>
-        <img src={maquina.imagenUrl} alt={maquina.nombre} className="accion" onClick={() => { maquina.activarDesactivar() }}/>
-      </div>
+      <Accion key={`maquina-${index}`} nombre={maquina.nombre} imagenActiva={maquina.imagenActivaUrl} imagenInactiva={maquina.imagenInactivaUrl}/>
     )
   }
 

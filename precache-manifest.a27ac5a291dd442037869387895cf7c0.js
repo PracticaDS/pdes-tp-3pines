@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/pdes-tp-3pines/static/css/main.e89caf48.chunk.css"
   },
   {
-    "revision": "c526490cd0f39ca157f721f78af691de",
+    "revision": "b95325bedf772f7c25f52d1289664bdb",
     "url": "/pdes-tp-3pines/index.html"
   }
 ];

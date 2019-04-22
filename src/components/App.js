@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/App.css';
+import '../styles/App.scss';
 import { Fabrica } from './Fabrica.js'
 import { Toolbox } from './Toolbox.js'
 import { Detalle } from './Detalle';
@@ -10,7 +10,7 @@ class App extends Component {
       <div className="app-contenedor">
       	<Toolbox />
         <Fabrica />
-        <Detalle maquina={{nombre: 'Starter', costo: '800', frecuencia: 1}}/>
+        <Detalle />
       </div>
     );
   }

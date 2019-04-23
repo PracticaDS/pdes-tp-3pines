@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/Toolbox.css';
-import '../styles/_compartido.css';
+import '../styles/Toolbox.scss';
+import '../styles/_compartido.scss';
 import {ACCIONES, MAQUINAS} from '../constantes';
 import Accion from "./Accion";
 

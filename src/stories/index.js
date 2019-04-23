@@ -4,10 +4,10 @@ import {Fabrica} from '../components/Fabrica.js'
 import {Toolbox} from '../components/Toolbox.js'
 import {Detalle} from '../components/Detalle';
 import {Maquina} from '../models/Maquina';
-import '../styles/Fabrica.css';
-import '../styles/Toolbox.css';
-import '../styles/Detalle.css';
-import '../styles/_compartido.css';
+import '../styles/Fabrica.scss';
+import '../styles/Toolbox.scss';
+import '../styles/Detalle.scss';
+import '../styles/_compartido.scss';
 import '../index.css';
 
 storiesOf('Fabrica', module).add('con columnas', () => <Fabrica />);

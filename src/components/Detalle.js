@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/Detalle.css';
-import '../styles/_compartido.css';
+import '../styles/Detalle.scss';
+import '../styles/_compartido.scss';
 
 export const Detalle = (props) => {
   return (

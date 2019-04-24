@@ -1,18 +1,18 @@
 import React from 'react';
 import '../styles/Toolbox.scss';
 import '../styles/_compartido.scss';
-import Accion from "./Accion/Accion";
+import AccionContainer from './Accion/AccionContainer';
 
-export const Toolbox = (props) => {
+export const Toolbox = ({maquinas, acciones}) => {
   const agregarAcciones = () => {
-    return props.acciones.map((accion, index) =>
-      <Accion key={`accion-${index}`} nombre={accion.nombre} imagenActiva={accion.imagenActivaUrl} imagenInactiva={accion.imagenInactivaUrl}/>
+    return acciones.map((accion, index) =>
+      <AccionContainer key={`accion-${index}`} nombre={accion.nombre} imagenActiva={accion.imagenActivaUrl} imagenInactiva={accion.imagenInactivaUrl}/>
     )
   }
 
   const agregarMaquinas = () => {
-    return props.maquinas.map((maquina, index) =>
-      <Accion key={`maquina-${index}`} nombre={maquina.nombre} imagenActiva={maquina.imagenActivaUrl} imagenInactiva={maquina.imagenInactivaUrl}/>
+    return maquinas.map((maquina, index) =>
+      <AccionContainer key={`maquina-${index}`} nombre={maquina.nombre} imagenActiva={maquina.imagenActivaUrl} imagenInactiva={maquina.imagenInactivaUrl}/>
     )
   }
 
@@ -22,6 +22,7 @@ export const Toolbox = (props) => {
       <div className="acciones-contenedor">
       	<div className="titulo">Máquinas</div>
   	    <div className="toolbox-acciones borde-piola">
+
           <div className="row">
             { agregarMaquinas().slice(0,2) }
           </div>

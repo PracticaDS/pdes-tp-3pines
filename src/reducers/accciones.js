@@ -2,8 +2,6 @@ import { SELECCIONAR_ACCION } from '../actions/seleccionarAccion';
 
 const estadoInicial = {
   accionSeleccionada: '',
-  maquinasEnLaFabrica: [],
-  ganancia: 0,
 }
 
 function reducer(estado = estadoInicial, { type, payload }) {

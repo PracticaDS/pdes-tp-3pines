@@ -1,5 +1,5 @@
 import React from 'react';
-import '../scss/Fabrica.scss';
+import '../styles/Fabrica.scss';
 
 export const Celda = (props) => { 
   return (

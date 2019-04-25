@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import '../css/App.css';
+import '../styles/App.scss';
 import { Fabrica } from './Fabrica.js'
 import { Toolbox } from './Toolbox.js'
+import { Detalle } from './Detalle';
+import { ACCIONES, MAQUINAS } from "../constantes";
 
 class App extends Component {
   render() {
     return (
       <div className="app-contenedor">
-      	<Toolbox />
+      	<Toolbox maquinas={MAQUINAS} acciones={ACCIONES}/>
         <Fabrica />
+        <Detalle />
       </div>
     );
   }

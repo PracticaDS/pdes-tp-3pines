@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow, mount, render } from 'enzyme'
-import { Fabrica, Celda } from '../components/Fabrica'
-import '../setupTests.js'
+import { Fabrica, Celda } from '../../components/Fabrica'
+import '../../setupTests.js'
 
 describe('<Fabrica />', () => {
   it('se monta como corresponde', () => {

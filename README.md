@@ -13,3 +13,12 @@
 4. Desarrollar manteniendo al día el branch con master realizando merges
 5. Quitar el tag `not ready` y pedir aprobación del PR
 6. Corregir los comentarios si es que existen
+
+
+# Testing
+
+Estamos usando `jest-enzyme` para nuestros tests.
+
+> [Documentación](https://github.com/FormidableLabs/enzyme-matchers/blob/master/packages/jest-enzyme/README.md)
+
+> [Assertions](https://github.com/FormidableLabs/enzyme-matchers/blob/master/packages/jest-enzyme/README.md#assertions)

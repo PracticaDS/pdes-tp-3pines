@@ -1,10 +1,10 @@
 import React from 'react';
-import App from '../components/App';
-import { Fabrica } from '../components/Fabrica'
-import { Toolbox } from '../components/Toolbox';
-import { Detalle } from '../components/Detalle';
+import App from '../../components/App';
+import { Fabrica } from '../../components/Fabrica'
+import { Toolbox } from '../../components/Toolbox';
+import { Detalle } from '../../components/Detalle';
 import { shallow } from 'enzyme'
-import '../setupTests.js'
+import '../../setupTests.js'
 
 describe('<App />', () => {
   it('se monta como corresponde', () => {

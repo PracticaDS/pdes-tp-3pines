@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../styles/App.scss';
 import { Fabrica } from './Fabrica.js'
 import { Toolbox } from './Toolbox.js'
-import { Detalle } from './Detalle';
+import DetalleContainer from './Detalle/DetalleContainer';
 import { ACCIONES, MAQUINAS } from "../constantes";
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
       <div className="app-contenedor">
       	<Toolbox maquinas={MAQUINAS} acciones={ACCIONES}/>
         <Fabrica />
-        <Detalle />
+        <DetalleContainer id="detalle"/>
       </div>
     );
   }

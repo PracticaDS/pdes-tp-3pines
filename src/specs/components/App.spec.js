@@ -1,6 +1,6 @@
 import React from 'react';
 import App from '../../components/App';
-import { Fabrica } from '../../components/Fabrica'
+import { Fabrica } from '../../components/Fabrica/Fabrica'
 import { Toolbox } from '../../components/Toolbox';
 import { Detalle } from '../../components/Detalle';
 import { shallow } from 'enzyme'

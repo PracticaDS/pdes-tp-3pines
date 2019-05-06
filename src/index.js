@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App.js';
 import * as serviceWorker from './serviceWorker';
 import Provider from "react-redux/es/components/Provider";
+import './index.css';
+import App from './components/App.js';
 import store from "./store";
 
 const Root = (
   <Provider store={store}>
     <App />
   </Provider>
-)
+);
 
 ReactDOM.render(Root, document.getElementById('root'));
 

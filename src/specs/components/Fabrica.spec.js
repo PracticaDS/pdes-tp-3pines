@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow, mount, render } from 'enzyme'
-import { Fabrica, Celda } from '../../components/Fabrica'
+import { Fabrica, Celda } from '../../components/Fabrica/Fabrica'
 import '../../setupTests.js'
 
 describe('<Fabrica />', () => {

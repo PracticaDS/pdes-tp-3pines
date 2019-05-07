@@ -1,9 +1,9 @@
 import {AGREGAR_MAQUINA, SELECCIONAR_CELDA} from '../actions/seleccionarCelda';
 import {MAQUINAS} from "../constantes";
-import {generadorDeCeldas} from './generadorDeCeldas'
+import generarCeldas from './generadorDeCeldas'
 
 const estadoInicial = {
-  celdas: generadorDeCeldas.generarCeldas(10, 10),
+  celdas: generarCeldas(10, 10),
 };
 
 function reducer(estado = estadoInicial, { type, payload }) {

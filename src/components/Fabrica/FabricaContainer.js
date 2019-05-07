@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { Fabrica } from "./Fabrica";
 
 const mapStateToProps = (state, ownProps) => ({
-  alto: state.fabrica.fabrica.alto,
-  ancho: state.fabrica.fabrica.ancho,
-  celdas: state.fabrica.fabrica.celdas
+  alto: 10,
+  ancho: 10,
+  celdas: state.fabrica.celdas
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({});

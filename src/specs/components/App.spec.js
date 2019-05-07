@@ -15,7 +15,7 @@ describe('<App />', () => {
   it('tiene 1 fabrica', () => {
  	  let wrapper = shallow(<App />)
 
-  	expect(wrapper.find(Fabrica)).toHaveLength(1)
+  	expect(wrapper.find('#fabrica')).toHaveLength(1)
   })
 
   it('tiene 1 toolbox', () => {

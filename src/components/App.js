@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="app-contenedor">
       	<Toolbox maquinas={MAQUINAS} acciones={ACCIONES}/>
-        <FabricaContainer />
+        <FabricaContainer id="fabrica"/>
         <DetalleContainer id="detalle"/>
       </div>
     );

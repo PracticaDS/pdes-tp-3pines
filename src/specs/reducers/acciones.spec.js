@@ -1,5 +1,5 @@
 import '../../setupTests.js'
-import reducer from '../../reducers/accciones'
+import reducer from '../../reducers/acciones'
 import {SELECCIONAR_ACCION} from "../../actions/seleccionarAccion";
 
 describe('SELECCIONAR_ACCION', () => {

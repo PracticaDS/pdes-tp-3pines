@@ -1,5 +1,6 @@
 import {AGREGAR_MAQUINA, SELECCIONAR_CELDA} from '../actions/seleccionarCelda';
 import {MAQUINAS} from "../constantes";
+import {Celda} from "../models/Celda";
 
 const generarCeldas = (ancho, alto) => {
   const celdas = Array.from(Array(ancho * alto)).map((_, index) => {

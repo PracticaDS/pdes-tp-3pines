@@ -2,15 +2,15 @@ import React from 'react';
 import '../../styles/Celda.scss';
 import AccionContainer from "../Accion/AccionContainer";
 
-const clases = (props) => {
-  const claseSeleccionada = props.seleccionada ? 'seleccionada' : '';
+const clases = (seleccionada) => {
+  const claseSeleccionada = seleccionada ? 'seleccionada' : '';
   return `celda ${claseSeleccionada}`
 };
 
-const Celda = (props) => {
+const Celda = ({seleccionada, seleccionar, maquina}) => {
   return (
-    <div className={ clases(props) } onClick={props.seleccionar}>
-      { !!props.maquina ? <AccionContainer nombre={props.maquina.nombre} imagenActiva={props.maquina.imagenActivaUrl} imagenInactiva={props.maquina.imagenInactivaUrl}/> : '' }
+    <div className={ clases(seleccionada) } onClick={seleccionar}>
+      { !!maquina ? <img src={maquina.imagenInactivaUrl} alt={maquina.nombre} height="100%" width="100%"/> : '' }
     </div>
   )
 };

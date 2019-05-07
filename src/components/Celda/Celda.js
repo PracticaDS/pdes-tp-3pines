@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../styles/Celda.scss';
-import AccionContainer from "../Accion/AccionContainer";
 
 const clases = (seleccionada) => {
   const claseSeleccionada = seleccionada ? 'seleccionada' : '';

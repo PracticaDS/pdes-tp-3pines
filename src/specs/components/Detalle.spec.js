@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Detalle } from '../../components/Detalle'
+import { Detalle } from '../../components/Detalle/Detalle'
 import { Maquina } from '../../models/Maquina';
 import '../../setupTests.js'
 

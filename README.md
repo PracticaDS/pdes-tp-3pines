@@ -5,6 +5,11 @@
 > Prácticas de Desarrollo de Software
 > Trabajo Práctico Integrador Grupal - Universidad Nacional de Quilmes - 2019
 
+# Armado del ambiente de desarrollo
+
+Para armar el ambiente de desarrollo es necesario tener instalado [Yarn](https://yarnpkg.com/en/).
+Clonar el repositorio y en el root ejecutar `nvm use & yarn install`.
+
 # Proceso de desarrollo
 
 1. Asignarse un issue

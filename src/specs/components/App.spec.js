@@ -2,7 +2,6 @@ import React from 'react';
 import App from '../../components/App';
 import { Fabrica } from '../../components/Fabrica/Fabrica'
 import { Toolbox } from '../../components/Toolbox';
-import { Detalle } from '../../components/Detalle';
 import { shallow } from 'enzyme'
 import '../../setupTests.js'
 
@@ -28,6 +27,6 @@ describe('<App />', () => {
   it('tiene 1 detalle', () => {
     let wrapper = shallow(<App />)
 
-    expect(wrapper.find(Detalle)).toHaveLength(1)
+    expect(wrapper.find('#detalle')).toHaveLength(1)
   })
 })

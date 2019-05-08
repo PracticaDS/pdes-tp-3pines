@@ -1,7 +1,7 @@
-import {AGREGAR_MAQUINA, SELECCIONAR_CELDA} from '../actions/seleccionarCelda';
+import {AGREGAR_MAQUINA, ELIMINAR_MAQUINA, SELECCIONAR_CELDA} from '../actions/seleccionarCelda';
 import {MAQUINAS} from "../constantes";
 import generarCeldas from './generadorDeCeldas'
-import { seleccionar, deseleccionar, esIgualA, asignarMaquina } from '../models/Celda'
+import {seleccionar, deseleccionar, esIgualA, asignarMaquina, eliminarMaquina} from '../models/Celda'
 
 const estadoInicial = {
   celdas: generarCeldas(10, 10),
@@ -24,6 +24,15 @@ function reducer(estado = estadoInicial, { type, payload }) {
       const nuevasCeldas = [...estado.celdas].map( celda => {
         if(esIgualA(celda, payload.celda)) {
           return asignarMaquina(celda, maquinaAAgregar)
+        }
+        return celda
+      })
+      return { ...estado, celdas: nuevasCeldas};
+    }
+    case ELIMINAR_MAQUINA: {
+      const nuevasCeldas = [...estado.celdas].map( celda => {
+        if(esIgualA(celda, payload.celda)) {
+          return eliminarMaquina(celda)
         }
         return celda
       })

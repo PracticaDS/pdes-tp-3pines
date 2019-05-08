@@ -14,6 +14,10 @@ export const asignarMaquina = (celda, maquina) => {
   return {...celda, maquina: maquina}
 }
 
+export const eliminarMaquina = (celda) => {
+  return {...celda, maquina: {}}
+}
+
 export const ordenarPorCoordenadas = (unaCelda, otraCelda) => {
   return unaCelda.x === otraCelda.x ? 
     unaCelda.y - otraCelda.y : 

@@ -1,5 +1,6 @@
 import {Maquina} from "./models/Maquina";
 import {Accion} from "./models/Accion";
+import {ELIMINAR_MAQUINA} from "./actions/seleccionarCelda";
 
 let rotarUrl =  process.env.PUBLIC_URL + '/icons/rotar.svg'
 let rotarActivoUrl =  process.env.PUBLIC_URL + '/icons/rotar_activo.svg'
@@ -12,7 +13,7 @@ let moverActivoUrl =  process.env.PUBLIC_URL + '/icons/mover_activo.svg'
 
 export const ACCIONES = [
   new Accion('Rotar', rotarUrl, rotarActivoUrl),
-  new Accion('Eliminar', eliminarUrl, eliminarActivoUrl),
+  new Accion('ELIMINAR_MAQUINA', eliminarUrl, eliminarActivoUrl),
   new Accion('Mover', moverUrl, moverActivoUrl),
 ]
 

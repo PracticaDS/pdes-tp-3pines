@@ -1,13 +1,16 @@
-import {combineReducers, createStore} from "redux";
-import acciones from './reducers/accciones'
-
-const initialState = {
-}
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import thunk from "redux-thunk";
+import acciones from './reducers/acciones';
+import fabrica from "./reducers/fabrica";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 const reducer = combineReducers({
-  acciones,
-})
+  fabrica,
+  acciones
+});
 
-const store = createStore(reducer, initialState)
+const store = createStore(
+  reducer, composeWithDevTools(applyMiddleware(thunk))
+);
 
 export default store

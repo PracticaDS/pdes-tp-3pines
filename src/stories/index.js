@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import {Fabrica} from '../components/Fabrica.js'
+import {Fabrica} from '../components/Fabrica/Fabrica.js'
 import {Toolbox} from '../components/Toolbox.js'
 import {Detalle} from '../components/Detalle/Detalle';
 import {Maquina} from '../models/Maquina';

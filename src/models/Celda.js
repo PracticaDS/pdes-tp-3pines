@@ -1,25 +1,30 @@
-export class Celda {
-
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.seleccionada = false;
-    this.maquina = null;
-  }
-
-  seleccionar() {
-    this.seleccionada = true;
-  }
-
-  deseleccionar() {
-    this.seleccionada = false;
-  }
-
-  esIgualA(otraCelda) {
-    return this.x === otraCelda.x && this.y === otraCelda.y;
-  }
-
-  asignarMaquina(unaMaquina) {
-    this.maquina = unaMaquina;
-  }
+export const seleccionar = (celda) => {
+  return {...celda, seleccionada: true } 
 }
+
+export const deseleccionar = (celda) => {
+  return {...celda, seleccionada: false }
+}
+
+export const esIgualA = (unaCelda, otraCelda) => {
+  return unaCelda.x === otraCelda.x && unaCelda.y === otraCelda.y
+}
+
+export const asignarMaquina = (celda, maquina) => {
+  return {...celda, maquina: maquina}
+}
+
+export const ordenarPorCoordenadas = (unaCelda, otraCelda) => {
+  return unaCelda.x === otraCelda.x ? 
+    unaCelda.y - otraCelda.y : 
+    unaCelda.x - otraCelda.x
+}
+
+export const Celda = (x, y) => {
+  return {
+    seleccionada: false,
+    maquina: {},
+    x,
+    y
+  }
+} 

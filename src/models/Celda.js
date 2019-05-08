@@ -20,10 +20,19 @@ export const ordenarPorCoordenadas = (unaCelda, otraCelda) => {
     unaCelda.x - otraCelda.x
 }
 
+export const ejecutarAccion = (celda, accionAEjecutar) => {
+  // TODO: pasarle la responsabilidad de ejecutar la acción a la accion.
+  return {...celda, maquina: {...celda.maquina, posicion: 'Norte'}}
+}
+
+export const contieneMaquina = (celda) => {
+  return celda.maquina !== null 
+}
+
 export const Celda = (x, y) => {
   return {
     seleccionada: false,
-    maquina: {},
+    maquina: null,
     x,
     y
   }

@@ -22,17 +22,17 @@ export const ordenarPorCoordenadas = (unaCelda, otraCelda) => {
 
 export const ejecutarAccion = (celda, accionAEjecutar) => {
   // TODO: pasarle la responsabilidad de ejecutar la acción a la accion.
-  return {...celda, maquina: {...celda.maquina, posicion: 'Norte'}}
+  return {...celda, maquina: {...celda.maquina, posicion: 'Este'}}
 }
 
 export const contieneMaquina = (celda) => {
   return celda.maquina !== null 
 }
 
-export const Celda = (x, y) => {
+export const Celda = (x, y, maquina = null) => {
   return {
     seleccionada: false,
-    maquina: null,
+    maquina,
     x,
     y
   }

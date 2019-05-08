@@ -4,6 +4,11 @@ export const SELECCIONAR_CELDA = 'SELECCIONAR_CELDA';
 export const AGREGAR_MAQUINA = 'AGREGAR_MAQUINA';
 export const ELIMINAR_MAQUINA = 'ELIMINAR_MAQUINA';
 
+function esMaquinaOAccion(accionSeleccionada) {
+  return MAQUINAS.map(({nombre}) => nombre).includes(accionSeleccionada)
+      || ACCIONES.map(({nombre}) => nombre).includes(accionSeleccionada);
+}
+
 const seleccionarCelda = celdaSeleccionada => {
   return (dispatch, getState) => {
     dispatch({
@@ -11,7 +16,7 @@ const seleccionarCelda = celdaSeleccionada => {
       payload: celdaSeleccionada
     });
     const accionSeleccionada = getState().acciones.accionSeleccionada;
-    if(MAQUINAS.map(({ nombre }) => nombre).includes(accionSeleccionada) || ACCIONES.map(({ nombre }) => nombre).includes(accionSeleccionada)  ) {
+    if(esMaquinaOAccion(accionSeleccionada)  ) {
       switch (accionSeleccionada) {
         case 'ELIMINAR_MAQUINA':
           dispatch({

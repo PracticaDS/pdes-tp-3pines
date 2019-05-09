@@ -6,13 +6,13 @@ import AccionContainer from './Accion/AccionContainer';
 export const Toolbox = ({maquinas, acciones}) => {
   const agregarAcciones = () => {
     return acciones.map((accion, index) =>
-      <AccionContainer key={`accion-${index}`} nombre={accion.nombre} imagenActiva={accion.imagenActivaUrl} imagenInactiva={accion.imagenInactivaUrl}/>
+      <AccionContainer key={`accion-${index}`} accion={accion}/>
     )
   }
 
   const agregarMaquinas = () => {
     return maquinas.map((maquina, index) =>
-      <AccionContainer key={`maquina-${index}`} nombre={maquina.nombre} imagenActiva={maquina.imagenActivaUrl} imagenInactiva={maquina.imagenInactivaUrl}/>
+      <AccionContainer key={`maquina-${index}`} accion={maquina}/>
     )
   }
 

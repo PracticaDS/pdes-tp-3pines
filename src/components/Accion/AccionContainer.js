@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Accion from './Accion';
 
 function obtenerImagen(state, ownProps) {
-  return state.acciones.accionSeleccionada === ownProps.nombre ?
-    ownProps.imagenActiva :
-    ownProps.imagenInactiva;
+  return state.acciones.accionSeleccionada === ownProps.accion.nombre ?
+    ownProps.accion.imagenActivaUrl :
+    ownProps.accion.imagenInactivaUrl;
 }
 
 const mapStateToProps = (state, ownProps) => ({
@@ -13,7 +13,10 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  seleccionarImagen: () => dispatch(seleccionarAccion(ownProps.nombre))
+  seleccionarImagen: () => {
+    debugger
+    dispatch(seleccionarAccion(ownProps.accion.nombre))
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Accion)

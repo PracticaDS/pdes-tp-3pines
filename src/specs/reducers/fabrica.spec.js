@@ -3,10 +3,13 @@ import reducer from '../../reducers/fabrica'
 import generarCeldas from '../../reducers/generadorDeCeldas'
 import { EJECUTAR_ACCION } from '../../actions/seleccionarCelda';
 import { Celda } from '../../models/Celda'
+import { ACCIONES } from '../../constantes.js';
+
 describe('fabrica', () => {
 
   describe('EJECUTAR_ACCION', () => {
-    
+    const accionAEjecutar = ACCIONES[0]
+
     describe('Al ejecutar una accion sobre una celda que no contiene maquinas', () => {
       it('el estado no se modifica', () => {
         const estadoInicial = {
@@ -15,7 +18,7 @@ describe('fabrica', () => {
 
         const accion = {
           type: EJECUTAR_ACCION,
-          payload: { celda: Celda(0, 0), accionAEjecutar: 'Rotar' },
+          payload: { celda: Celda(0, 0), accionAEjecutar },
         }
         const estadoFinal = reducer(estadoInicial, accion)
  
@@ -30,17 +33,17 @@ describe('fabrica', () => {
           const estadoInicial = {
             celdas: generarCeldas(1, 1),
           };
-          const maquina = { posicion: 'Norte' }
+          const maquina = { direccion: 'Norte' }
           estadoInicial.celdas[0].maquina = maquina
 
           const accion = {
             type: EJECUTAR_ACCION,
-            payload: { celda: Celda(0, 0, maquina), accionAEjecutar: 'Rotar' },
+            payload: { celda: Celda(0, 0, maquina), accionAEjecutar },
           }
           const estadoFinal = reducer(estadoInicial, accion)
 
           expect(estadoFinal).not.toEqual(estadoInicial)
-          expect(estadoFinal.celdas[0].maquina.posicion).toEqual('Este')   
+          expect(estadoFinal.celdas[0].maquina.direccion).toEqual('Este')   
         })
       })
     })

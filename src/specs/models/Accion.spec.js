@@ -1,40 +1,37 @@
 import '../../setupTests.js'
-import { Accion } from '../../models/Accion';
+import { ACCIONES, MAQUINAS } from '../../constantes.js';
 
 describe('Accion', () => {
 
-  it('esta desactivada por defecto', () => {
-    const accion = new Accion("Eliminar")
-
-    expect(accion.estaActiva()).toEqual(false)
+  describe('Eliminar', () => {
+    it('TODO', () => {
+      
+    })
   })
 
-  it('se puede activar', () => {
-    const accion = new Accion("Eliminar")
+  describe('Rotar', () => {
 
-    accion.activarDesactivar()
-
-    expect(accion.estaActiva()).toEqual(true)
+    it('Dada una maquina, al ejecutarle la accion de rotar, la maquina cambia su direccion', () => {
+      const accionRotar = ACCIONES.find(accion => accion.nombre === 'Rotar')
+      const maquina = MAQUINAS[0]
+      
+      let maquinaRotada = accionRotar.accion.ejecutar(maquina)
+      expect(maquinaRotada.direccion).toEqual('Este');
+      // Vuelvo a rotar la maquina
+      maquinaRotada = accionRotar.accion.ejecutar(maquinaRotada)
+      expect(maquinaRotada.direccion).toEqual('Sur');
+      // Vuelvo a rotar la maquina
+      maquinaRotada = accionRotar.accion.ejecutar(maquinaRotada)
+      expect(maquinaRotada.direccion).toEqual('Oeste');
+      // Vuelvo a rotar la maquina
+      maquinaRotada = accionRotar.accion.ejecutar(maquinaRotada)
+      expect(maquinaRotada.direccion).toEqual('Norte');
+    })
   })
 
-  it('al activarse cambia el svg', () => {
-    const accion = new Accion("Eliminar", '/icons/eliminar.svg', '/icons/eliminar_activo.svg')
-
-    accion.activarDesactivar()
-
-    expect(accion.estaActiva()).toEqual(true)
-    expect(accion.imagenUrl).toMatch('eliminar_activo.svg')
-  })
-
-  it('al desactivarse cambia el svg', () => {
-    const accion = new Accion("Eliminar", '/icons/eliminar.svg', '/icons/eliminar_activo.svg')
-
-    // Activo
-    accion.activarDesactivar()
-    // Desactivo
-    accion.activarDesactivar()
-
-    expect(accion.estaActiva()).toEqual(false)
-    expect(accion.imagenUrl).toMatch('eliminar.svg')
+  describe('Mover', () => {
+    it('TODO', () => {
+      
+    })
   })
 })

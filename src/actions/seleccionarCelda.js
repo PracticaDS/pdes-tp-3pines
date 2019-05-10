@@ -1,15 +1,15 @@
-import {MAQUINAS, ACCIONES} from "../constantes";
+import { MAQUINAS, ACCIONES } from '../constantes';
 
 export const SELECCIONAR_CELDA = 'SELECCIONAR_CELDA';
 export const AGREGAR_MAQUINA = 'AGREGAR_MAQUINA';
 export const EJECUTAR_ACCION = 'EJECUTAR_ACCION';
 
 const seSeleccionoUnaMaquina = (accionSeleccionada) => {
-  return MAQUINAS.map(({ nombre }) => nombre).includes(accionSeleccionada)
+  return MAQUINAS.map(({ nombre }) => nombre).includes(accionSeleccionada.nombre)
 }
 
 const seSeleccionoUnaAccion = (accionSeleccionada) => {
-  return ACCIONES.map(({ nombre }) => nombre).includes(accionSeleccionada)
+  return ACCIONES.map(({ nombre }) => nombre).includes(accionSeleccionada.nombre)
 }
 
 const seleccionarCelda = celdaSeleccionada => {
@@ -24,7 +24,7 @@ const seleccionarCelda = celdaSeleccionada => {
     if(seSeleccionoUnaMaquina(accionSeleccionada)) {
       dispatch({
         type: AGREGAR_MAQUINA,
-        payload: { celda: celdaSeleccionada, maquinaAAgregar: accionSeleccionada }
+        payload: { celda: celdaSeleccionada, maquinaAAgregar: accionSeleccionada.nombre }
       });
     }
     if(seSeleccionoUnaAccion(accionSeleccionada)) {

@@ -21,8 +21,7 @@ export const ordenarPorCoordenadas = (unaCelda, otraCelda) => {
 }
 
 export const ejecutarAccion = (celda, accionAEjecutar) => {
-  // TODO: pasarle la responsabilidad de ejecutar la acción a la accion.
-  return {...celda, maquina: {...celda.maquina, posicion: 'Este'}}
+  return {...celda, maquina: accionAEjecutar.accion.ejecutar(celda.maquina)}
 }
 
 export const contieneMaquina = (celda) => {

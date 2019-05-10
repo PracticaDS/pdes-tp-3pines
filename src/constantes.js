@@ -1,5 +1,5 @@
-import {Maquina} from "./models/Maquina";
-import {Accion} from "./models/Accion";
+import { Maquina } from './models/Maquina'
+import { Accion } from './models/Accion'
 
 let rotarUrl =  process.env.PUBLIC_URL + '/icons/rotar.svg'
 let rotarActivoUrl =  process.env.PUBLIC_URL + '/icons/rotar_activo.svg'
@@ -10,10 +10,19 @@ let eliminarActivoUrl =  process.env.PUBLIC_URL + '/icons/eliminar_activo.svg'
 let moverUrl =  process.env.PUBLIC_URL + '/icons/mover.svg'
 let moverActivoUrl =  process.env.PUBLIC_URL + '/icons/mover_activo.svg'
 
+const accionRotar = {
+  ejecutar: function(maquina) {
+    if (maquina.direccion === 'Norte') return {...maquina, direccion: 'Este'}
+    if (maquina.direccion === 'Este') return {...maquina, direccion: 'Sur'}
+    if (maquina.direccion === 'Sur') return {...maquina, direccion: 'Oeste'}
+    if (maquina.direccion === 'Oeste') return {...maquina, direccion: 'Norte'}
+  }
+}
+
 export const ACCIONES = [
-  new Accion('Rotar', rotarUrl, rotarActivoUrl),
-  new Accion('Eliminar', eliminarUrl, eliminarActivoUrl),
-  new Accion('Mover', moverUrl, moverActivoUrl),
+  Accion('Rotar', rotarActivoUrl, rotarUrl, accionRotar),
+  Accion('Eliminar', eliminarActivoUrl, eliminarUrl, {ejecutar: () => {}}),
+  Accion('Mover', moverActivoUrl, moverUrl, {ejecutar: () => {}}),
 ]
 
 let starterUrl =  process.env.PUBLIC_URL + '/icons/starter.svg'
@@ -32,9 +41,9 @@ let transporterUrl =  process.env.PUBLIC_URL + '/icons/transporter.svg'
 let transporterActivoUrl =  process.env.PUBLIC_URL + '/icons/transporter_activo.svg'
 
 export const MAQUINAS = [
-  new Maquina('Starter', '10', '1', starterUrl, starterActivoUrl),
-  new Maquina('Seller', '15', '1', sellerUrl, sellerActivoUrl),
-  new Maquina('Crafter', '20', '1', crafterUrl, crafterActivoUrl),
-  new Maquina('Furnace', '25', '1', furnaceUrl, furnaceActivoUrl),
-  new Maquina('Transporter', '30', '1', transporterUrl, transporterActivoUrl),
+  Maquina('Starter', starterActivoUrl, starterUrl, '1', '10'),
+  Maquina('Seller', sellerActivoUrl, sellerUrl, '1', '15'),
+  Maquina('Crafter', crafterActivoUrl, crafterUrl, '1', '20'),
+  Maquina('Furnace', furnaceActivoUrl, furnaceUrl, '1', '25'),
+  Maquina('Transporter', transporterActivoUrl, transporterUrl, '1', '30', 'Norte'),
 ]

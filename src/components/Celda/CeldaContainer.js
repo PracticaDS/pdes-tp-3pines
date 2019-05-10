@@ -7,8 +7,8 @@ const mapStateToProps = (state, ownProps) => ({
   maquina: ownProps.celda.maquina
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapActionsToProps = (dispatch, ownProps) => ({
   seleccionar: () => dispatch(seleccionarCelda(ownProps.celda))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Celda)
+export default connect(mapStateToProps, mapActionsToProps)(Celda)

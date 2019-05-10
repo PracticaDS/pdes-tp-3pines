@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import '../styles/App.scss';
+import React, { Component } from 'react'
+import '../styles/App.scss'
 import { Toolbox } from './Toolbox.js'
-import DetalleContainer from './Detalle/DetalleContainer';
-import { ACCIONES, MAQUINAS } from "../constantes";
-import FabricaContainer from "./Fabrica/FabricaContainer";
+import DetalleContainer from './Detalle/DetalleContainer'
+import { MAQUINAS, ACCIONES } from '../constantes'
+import FabricaContainer from './Fabrica/FabricaContainer'
 
 class App extends Component {
   render() {

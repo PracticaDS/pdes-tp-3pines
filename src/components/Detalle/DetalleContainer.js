@@ -3,7 +3,7 @@ import { Detalle } from './Detalle';
 import { MAQUINAS } from '../../constantes';
 
 function obtenerMaquina(state) {
-  return MAQUINAS.find(maquina => maquina.nombre === state.acciones.accionSeleccionada);
+  return MAQUINAS.find(maquina => maquina.nombre === state.acciones.accionSeleccionada.nombre);
 }
 
 const mapStateToProps = (state, ownProps) => ({

@@ -1,4 +1,4 @@
-export const Maquina = (nombre,  imagenActivaUrl, imagenInactivaUrl, frecuencia, costo, direccion='Norte') => {
+export const Maquina = (nombre,  imagenActivaUrl, imagenInactivaUrl, frecuencia, costo, direccion='Norte', tick) => {
   return {
     nombre,
     imagenActivaUrl,
@@ -6,5 +6,8 @@ export const Maquina = (nombre,  imagenActivaUrl, imagenInactivaUrl, frecuencia,
     frecuencia,
     costo,
     direccion,
+    tick: () => {
+      console.log("tick from maquina")
+    }
   }
 }

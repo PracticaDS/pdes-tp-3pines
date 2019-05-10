@@ -1,9 +1,9 @@
 export const seleccionar = (celda) => {
-  return {...celda, seleccionada: true } 
+  return celda.seleccionada ? celda : {...celda, seleccionada: true } 
 }
 
 export const deseleccionar = (celda) => {
-  return {...celda, seleccionada: false }
+  return !celda.seleccionada ? celda : {...celda, seleccionada: false }
 }
 
 export const esIgualA = (unaCelda, otraCelda) => {

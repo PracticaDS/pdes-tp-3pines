@@ -10,37 +10,27 @@ const estadoInicial = {
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
     case SELECCIONAR_CELDA: {
-      const nuevasCeldas = [...estado.celdas].map(celda => {
-        if(esIgualA(celda, payload)) {
-          return seleccionar(celda)
-        } else {
-          return deseleccionar(celda)
-        } 
-      })
-      return { ...estado, celdas: nuevasCeldas };
+      const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload) ? seleccionar(celda) : deseleccionar(celda))
+      return { ...estado, celdas: nuevasCeldas }
     }
     
     case AGREGAR_MAQUINA: {
       const maquinaAAgregar = MAQUINAS.find(({ nombre }) => nombre === payload.maquinaAAgregar)
-      const nuevasCeldas = [...estado.celdas].map( celda => {
-        return esIgualA(celda, payload.celda) ? asignarMaquina(celda, maquinaAAgregar) : celda
-      })
-      return { ...estado, celdas: nuevasCeldas };
+      const nuevasCeldas = [...estado.celdas].map( celda => esIgualA(celda, payload.celda) ? asignarMaquina(celda, maquinaAAgregar) : celda)
+      return { ...estado, celdas: nuevasCeldas }
     }
     
     case EJECUTAR_ACCION: {
       if (contieneMaquina(payload.celda)) {
-        const nuevasCeldas = [...estado.celdas].map( celda => {
-          return esIgualA(celda, payload.celda) ? ejecutarAccion(celda, payload.accionAEjecutar) : celda
-        })
+        const nuevasCeldas = [...estado.celdas].map( celda => esIgualA(celda, payload.celda) ? ejecutarAccion(celda, payload.accionAEjecutar) : celda)
         return { ...estado, celdas: nuevasCeldas }
       }
       return estado
     }
 
     default:
-      return estado;
+      return estado
   }
 }
 
-export default reducer;
+export default reducer

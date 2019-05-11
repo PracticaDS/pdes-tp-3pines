@@ -28,10 +28,4 @@ describe('Accion', () => {
       expect(maquinaRotada.direccion).toEqual('Norte');
     })
   })
-
-  describe('Mover', () => {
-    it('TODO', () => {
-      
-    })
-  })
 })

@@ -38,9 +38,9 @@ function reducer(estado = estadoInicial, { type, payload }) {
         if (esIgualA(celda, payload.celda)) {
           return {...celda, maquina: estado.moverDesdeCelda.maquina} 
         }
-        // Eliminar de celda inicial
+        // Reemplazar contenido de celda inicial por celda final
         if (esIgualA(celda, estado.moverDesdeCelda)) {
-          return {...celda, maquina: null} 
+          return {...celda, maquina: payload.celda.maquina}
         }
         return celda
       })

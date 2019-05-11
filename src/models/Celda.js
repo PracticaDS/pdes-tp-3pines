@@ -28,6 +28,10 @@ export const contieneMaquina = (celda) => {
   return celda.maquina !== null 
 }
 
+export const armarId = (celda) => {
+  return `${celda.x}-${celda.y}`
+}
+
 export const Celda = (x, y, maquina = null) => {
   return {
     seleccionada: false,

@@ -1,5 +1,13 @@
 import { AGREGAR_MAQUINA, SELECCIONAR_CELDA, EJECUTAR_ACCION, MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER } from '../actions/seleccionarCelda'
-import { seleccionar, deseleccionar, esIgualA, asignarMaquina, ejecutarAccion, contieneMaquina } from '../models/Celda'
+import {
+  seleccionar,
+  deseleccionar,
+  esIgualA,
+  asignarMaquina,
+  ejecutarAccion,
+  contieneMaquina,
+  armarId
+} from '../models/Celda'
 import { MAQUINAS } from '../constantes'
 import { TICK } from '../actions/tick';
 import generarCeldas from './generadorDeCeldas'
@@ -15,37 +23,40 @@ const estadoInicial = {
   moverDesdeCelda: null
 }
 
-const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => celdas.find(celda => celda.x === coordenadaX && celda.y === coordenadaY)
+const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => {
+  return celdas.find(celda => celda.x === coordenadaX && celda.y === coordenadaY)
+}
 
 const celdaHaciaDondeApunta = (celdas, unaCelda) => {
   switch (unaCelda.maquina.direccion) {
     case NORTE: { return celdaEnCoordenada(celdas, unaCelda.x + 1, unaCelda.y) }
     case SUR:   { return celdaEnCoordenada(celdas, unaCelda.x - 1, unaCelda.y) }
-    case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
     case ESTE:  { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y - 1) }
+    case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
   }
 }
 
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
     case TICK: {
-      const celdasAModificar = estado.celdas.filter(celda => celda.maquina).map(celda => {
-        const celdaAModificar = celdaHaciaDondeApunta(estado.celdas, celda)
+      const celdasAfectadas = estado.celdas.filter(celda => celda.maquina).reduce((celdasAfectadas, celda) => {
+        const celdaAfectada = celdaHaciaDondeApunta(estado.celdas, celda)
 
-        // Si la maquina es una starter...
-        if(celdaAModificar) {
-          return {...celdaAModificar, materia: celdaAModificar.materia + celda.maquina.tick(celdaAModificar)}
+        if(celdaAfectada) {
+          // Si la maquina es una starter...
+          const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
+          celdasAfectadas[armarId(celdaAfectada)] = {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick(celdaAfectada)}
         }
-      }).filter(celda => celda)
 
-      if (celdasAModificar.length === 0) {
+        return celdasAfectadas
+      }, {})
+
+      if (Object.keys(celdasAfectadas).length === 0) {
         return estado
       }
 
       const nuevasCeldas = estado.celdas.map(celda => {
-        const celdaModificada = celdasAModificar.find(celdaAModificar => esIgualA(celdaAModificar, celda))
-        
-        return celdaModificada ? celdaModificada : celda;
+        return celdasAfectadas[armarId(celda)] ? celdasAfectadas[armarId(celda)] : celda;
       })
 
       return { ...estado, celdas: nuevasCeldas }

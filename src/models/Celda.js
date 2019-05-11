@@ -32,6 +32,7 @@ export const Celda = (x, y, maquina = null) => {
   return {
     seleccionada: false,
     maquina,
+    materia: 0,
     x,
     y
   }

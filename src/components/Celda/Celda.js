@@ -1,15 +1,17 @@
 import React from 'react';
 import '../../styles/Celda.scss';
+import  Maquina from '../Maquina'
 
 const clases = (seleccionada) => {
   const claseSeleccionada = seleccionada ? 'seleccionada' : '';
   return `celda ${claseSeleccionada}`
 };
 
-const Celda = ({seleccionada, seleccionar, maquina}) => {
+const Celda = ({celda, seleccionada, seleccionar, maquina}) => {
   return (
     <div className={ clases(seleccionada) } onClick={seleccionar}>
-      { !!maquina ? <img className={ maquina.direccion.toLowerCase() } src={maquina.imagenInactivaUrl} alt={maquina.nombre} height="100%" width="100%"/> : '' }
+      { !!maquina ? <Maquina maquina={maquina}/> : '' }
+      { !!celda.materia ? <div className={'materia-prima'}>{ celda.materia }</div> : '' }
     </div>
   )
 };

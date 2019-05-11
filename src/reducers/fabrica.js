@@ -1,19 +1,46 @@
 import { AGREGAR_MAQUINA, SELECCIONAR_CELDA, EJECUTAR_ACCION, MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER } from '../actions/seleccionarCelda'
 import { seleccionar, deseleccionar, esIgualA, asignarMaquina, ejecutarAccion, contieneMaquina } from '../models/Celda'
 import { MAQUINAS } from '../constantes'
-import generarCeldas from './generadorDeCeldas'
 import { TICK } from '../actions/tick';
+import generarCeldas from './generadorDeCeldas'
+
+const ancho = 10
+const alto = 10
 
 const estadoInicial = {
-  celdas: generarCeldas(10, 10),
+  ancho,
+  alto,
+  celdas: generarCeldas(ancho, alto),
   moverDesdeCelda: null
+}
+
+const celdaAlSur = (unaCelda, celdas) => {
+  return celdas.find(celda => celda.x === unaCelda.x+1 && celda.y === unaCelda.y)
 }
 
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
     case TICK: {
-      estado.celdas.forEach(celda => celda.maquina ? celda.maquina.tick() : 'do nothing')
-      return estado
+      const celdasAModificar = estado.celdas.map(celda => {
+        if(celda.maquina) {
+          // Si la maquina es una starter...
+          // tener en cuenta la celda.maquina.direccion para calcular a que celda cagar.
+          const celdaSurenia = celdaAlSur(celda, estado.celdas)
+          if( celdaSurenia ) return {...celdaSurenia, materia: celdaSurenia.materia + celda.maquina.tick(celdaSurenia)}
+        }
+      }).filter(celda => celda)
+
+      if ( celdasAModificar.length === 0 ) { 
+        return estado
+      }
+
+      const nuevasCeldas = estado.celdas.map(celda => {
+        const celdaModificada = celdasAModificar.find(celdaAModificar => esIgualA(celdaAModificar, celda))
+        
+        return celdaModificada ? celdaModificada : celda;
+      })
+
+      return { ...estado, celdas: nuevasCeldas }
     }
     
     case SELECCIONAR_CELDA: {

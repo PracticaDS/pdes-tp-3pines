@@ -1,10 +1,10 @@
 import '../../setupTests.js'
 import reducer from '../../reducers/fabrica'
 import generarCeldas from '../../reducers/generadorDeCeldas'
-import {EJECUTAR_ACCION, FINALIZAR_MOVER, INICIAR_MOVER} from '../../actions/seleccionarCelda';
+import { EJECUTAR_ACCION, MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER } from '../../actions/seleccionarCelda'
 import { Celda } from '../../models/Celda'
-import { ACCIONES } from '../../constantes.js';
-import {Maquina} from '../../models/Maquina';
+import { ACCIONES } from '../../constantes.js'
+import { Maquina } from '../../models/Maquina'
 
 describe('fabrica', () => {
 
@@ -15,7 +15,7 @@ describe('fabrica', () => {
       it('el estado no se modifica', () => {
         const estadoInicial = {
           celdas: generarCeldas(1, 1),
-        };
+        }
 
         const accion = {
           type: EJECUTAR_ACCION,
@@ -33,7 +33,7 @@ describe('fabrica', () => {
         it('la maquina contenida en la celda cambia su direccion', () => {
           const estadoInicial = {
             celdas: generarCeldas(1, 1),
-          };
+          }
           const maquina = { direccion: 'Norte' }
           estadoInicial.celdas[0].maquina = maquina
 
@@ -55,8 +55,8 @@ describe('fabrica', () => {
         const accionAEjecutar = ACCIONES[2]
 
         describe('Y se selecciona una maquina por primera vez', () => {
-          const estadoInicial = { celdas: generarCeldas(1, 2), moverDesdeCelda: null };
-          const seleccionarMaquina = { type: INICIAR_MOVER, payload: { celda: celdaOrigen(estadoInicial), accionAEjecutar } }
+          const estadoInicial = { celdas: generarCeldas(1, 2), moverDesdeCelda: null }
+          const seleccionarMaquina = { type: SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER, payload: { celda: celdaOrigen(estadoInicial), accionAEjecutar } }
 
           beforeEach(() => celdaOrigen(estadoInicial).maquina = maquina)
 
@@ -68,10 +68,10 @@ describe('fabrica', () => {
         })
 
         describe('Y se selecciona una maquina por segunda vez', () => {
-          const estadoInicial = { celdas: generarCeldas(1, 2), moverDesdeCelda: null };
-          const seleccionarMaquina = { type: INICIAR_MOVER, payload: { celda: celdaOrigen(estadoInicial), accionAEjecutar } }
+          const estadoInicial = { celdas: generarCeldas(1, 2), moverDesdeCelda: null }
+          const seleccionarMaquina = { type: SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER, payload: { celda: celdaOrigen(estadoInicial), accionAEjecutar } }
           const estadoIntermedio = reducer(estadoInicial, seleccionarMaquina)
-          const seleccionarDestinoMaquina = { type: FINALIZAR_MOVER, payload: { celda: celdaDestino(estadoIntermedio), accionAEjecutar } }
+          const seleccionarDestinoMaquina = { type: MOVER_MAQUINA_DE_CELDA, payload: { celda: celdaDestino(estadoIntermedio), accionAEjecutar } }
 
           beforeEach(() => celdaOrigen(estadoInicial).maquina = maquina)
 

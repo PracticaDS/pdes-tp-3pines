@@ -4,7 +4,7 @@ import generarCeldas from '../../reducers/generadorDeCeldas'
 import { EJECUTAR_ACCION, MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER } from '../../actions/seleccionarCelda'
 import { Celda } from '../../models/Celda'
 import { ACCIONES } from '../../constantes.js'
-import { Maquina } from '../../models/Maquina'
+import {ESTE, Maquina, NORTE} from '../../models/Maquina'
 
 describe('fabrica', () => {
 
@@ -34,7 +34,7 @@ describe('fabrica', () => {
           const estadoInicial = {
             celdas: generarCeldas(1, 1),
           }
-          const maquina = { direccion: 'Norte' }
+          const maquina = { direccion: NORTE }
           estadoInicial.celdas[0].maquina = maquina
 
           const accion = {
@@ -44,7 +44,7 @@ describe('fabrica', () => {
           const estadoFinal = reducer(estadoInicial, accion)
 
           expect(estadoFinal).not.toEqual(estadoInicial)
-          expect(estadoFinal.celdas[0].maquina.direccion).toEqual('Este')   
+          expect(estadoFinal.celdas[0].maquina.direccion).toEqual(ESTE)
         })
       })
 

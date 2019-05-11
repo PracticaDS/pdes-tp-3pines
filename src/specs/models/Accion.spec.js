@@ -1,5 +1,6 @@
 import '../../setupTests.js'
 import { ACCIONES, MAQUINAS } from '../../constantes.js';
+import {ESTE, NORTE, OESTE, SUR} from "../../models/Maquina";
 
 describe('Accion', () => {
 
@@ -16,16 +17,16 @@ describe('Accion', () => {
       const maquina = MAQUINAS[0]
       
       let maquinaRotada = accionRotar.accion.ejecutar(maquina)
-      expect(maquinaRotada.direccion).toEqual('Este');
+      expect(maquinaRotada.direccion).toEqual(ESTE);
       // Vuelvo a rotar la maquina
       maquinaRotada = accionRotar.accion.ejecutar(maquinaRotada)
-      expect(maquinaRotada.direccion).toEqual('Sur');
+      expect(maquinaRotada.direccion).toEqual(SUR);
       // Vuelvo a rotar la maquina
       maquinaRotada = accionRotar.accion.ejecutar(maquinaRotada)
-      expect(maquinaRotada.direccion).toEqual('Oeste');
+      expect(maquinaRotada.direccion).toEqual(OESTE);
       // Vuelvo a rotar la maquina
       maquinaRotada = accionRotar.accion.ejecutar(maquinaRotada)
-      expect(maquinaRotada.direccion).toEqual('Norte');
+      expect(maquinaRotada.direccion).toEqual(NORTE);
     })
   })
 })

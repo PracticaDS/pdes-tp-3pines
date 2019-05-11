@@ -1,4 +1,4 @@
-import { Maquina } from './models/Maquina'
+import {ESTE, Maquina, NORTE, OESTE, SUR} from './models/Maquina'
 import { Accion } from './models/Accion'
 
 let rotarUrl =  process.env.PUBLIC_URL + '/icons/rotar.svg'
@@ -12,10 +12,10 @@ let moverActivoUrl =  process.env.PUBLIC_URL + '/icons/mover_activo.svg'
 
 const accionRotar = {
   ejecutar: function(maquina) {
-    if (maquina.direccion === 'Norte') return {...maquina, direccion: 'Este'}
-    if (maquina.direccion === 'Este') return {...maquina, direccion: 'Sur'}
-    if (maquina.direccion === 'Sur') return {...maquina, direccion: 'Oeste'}
-    if (maquina.direccion === 'Oeste') return {...maquina, direccion: 'Norte'}
+    if (maquina.direccion === NORTE) return {...maquina, direccion: ESTE}
+    if (maquina.direccion === ESTE) return {...maquina, direccion: SUR}
+    if (maquina.direccion === SUR) return {...maquina, direccion: OESTE}
+    if (maquina.direccion === OESTE) return {...maquina, direccion: NORTE}
   }
 }
 
@@ -51,5 +51,5 @@ export const MAQUINAS = [
   Maquina('Seller', sellerActivoUrl, sellerUrl, '1', '15'),
   Maquina('Crafter', crafterActivoUrl, crafterUrl, '1', '20'),
   Maquina('Furnace', furnaceActivoUrl, furnaceUrl, '1', '25'),
-  Maquina('Transporter', transporterActivoUrl, transporterUrl, '1', '30', 'Norte'),
+  Maquina('Transporter', transporterActivoUrl, transporterUrl, '1', '30', NORTE),
 ]

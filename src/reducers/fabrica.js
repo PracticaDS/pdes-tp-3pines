@@ -3,6 +3,7 @@ import { seleccionar, deseleccionar, esIgualA, asignarMaquina, ejecutarAccion, c
 import { MAQUINAS } from '../constantes'
 import { TICK } from '../actions/tick';
 import generarCeldas from './generadorDeCeldas'
+import {ESTE, NORTE, OESTE, SUR} from "../models/Maquina";
 
 const ancho = 10
 const alto = 10
@@ -14,8 +15,15 @@ const estadoInicial = {
   moverDesdeCelda: null
 }
 
-const celdaAlSur = (unaCelda, celdas) => {
-  return celdas.find(celda => celda.x === unaCelda.x+1 && celda.y === unaCelda.y)
+const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => celdas.find(celda => celda.x === coordenadaX && celda.y === coordenadaY)
+
+const celdaHaciaDondeApunta = (celdas, unaCelda) => {
+  switch (unaCelda.maquina.direccion) {
+    case NORTE: { return celdaEnCoordenada(celdas, unaCelda.x + 1, unaCelda.y) }
+    case SUR:   { return celdaEnCoordenada(celdas, unaCelda.x - 1, unaCelda.y) }
+    case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
+    case ESTE:  { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y - 1) }
+  }
 }
 
 function reducer(estado = estadoInicial, { type, payload }) {
@@ -23,10 +31,10 @@ function reducer(estado = estadoInicial, { type, payload }) {
     case TICK: {
       const celdasAModificar = estado.celdas.map(celda => {
         if(celda.maquina) {
+          const celdaAModificar = celdaHaciaDondeApunta(estado.celdas, celda)
+
           // Si la maquina es una starter...
-          // tener en cuenta la celda.maquina.direccion para calcular a que celda cagar.
-          const celdaSurenia = celdaAlSur(celda, estado.celdas)
-          if( celdaSurenia ) return {...celdaSurenia, materia: celdaSurenia.materia + celda.maquina.tick(celdaSurenia)}
+          if( celdaAModificar ) return {...celdaAModificar, materia: celdaAModificar.materia + celda.maquina.tick(celdaAModificar)}
         }
       }).filter(celda => celda)
 

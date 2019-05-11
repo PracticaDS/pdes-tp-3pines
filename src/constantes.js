@@ -19,9 +19,15 @@ const accionRotar = {
   }
 }
 
+const accionEliminar = {
+  ejecutar: function(maquina) {
+    return null
+  }
+}
+
 export const ACCIONES = [
   Accion('Rotar', rotarActivoUrl, rotarUrl, accionRotar),
-  Accion('Eliminar', eliminarActivoUrl, eliminarUrl, {ejecutar: () => {}}),
+  Accion('Eliminar', eliminarActivoUrl, eliminarUrl, accionEliminar),
   Accion('Mover', moverActivoUrl, moverUrl, {ejecutar: () => {}}),
 ]
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { Toolbox } from '../../components/Toolbox'
-import { ACCIONES, MAQUINAS } from '../../constantes'
+import { MAQUINAS, ACCIONES } from '../../constantes'
 import '../../setupTests.js'
 
 describe('<Toolbox />', () => {

@@ -1,9 +1,9 @@
 export const seleccionar = (celda) => {
-  return {...celda, seleccionada: true } 
+  return celda.seleccionada ? celda : {...celda, seleccionada: true } 
 }
 
 export const deseleccionar = (celda) => {
-  return {...celda, seleccionada: false }
+  return !celda.seleccionada ? celda : {...celda, seleccionada: false }
 }
 
 export const esIgualA = (unaCelda, otraCelda) => {
@@ -20,10 +20,18 @@ export const ordenarPorCoordenadas = (unaCelda, otraCelda) => {
     unaCelda.x - otraCelda.x
 }
 
-export const Celda = (x, y) => {
+export const ejecutarAccion = (celda, accionAEjecutar) => {
+  return {...celda, maquina: accionAEjecutar.accion.ejecutar(celda.maquina)}
+}
+
+export const contieneMaquina = (celda) => {
+  return celda.maquina !== null 
+}
+
+export const Celda = (x, y, maquina = null) => {
   return {
     seleccionada: false,
-    maquina: {},
+    maquina,
     x,
     y
   }

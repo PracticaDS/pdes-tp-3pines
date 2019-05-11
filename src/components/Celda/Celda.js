@@ -9,7 +9,7 @@ const clases = (seleccionada) => {
 const Celda = ({seleccionada, seleccionar, maquina}) => {
   return (
     <div className={ clases(seleccionada) } onClick={seleccionar}>
-      { !!maquina ? <img src={maquina.imagenInactivaUrl} alt={maquina.nombre} height="100%" width="100%"/> : '' }
+      { !!maquina ? <img className={ maquina.direccion.toLowerCase() } src={maquina.imagenInactivaUrl} alt={maquina.nombre} height="100%" width="100%"/> : '' }
     </div>
   )
 };

@@ -29,16 +29,16 @@ const celdaHaciaDondeApunta = (celdas, unaCelda) => {
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
     case TICK: {
-      const celdasAModificar = estado.celdas.map(celda => {
-        if(celda.maquina) {
-          const celdaAModificar = celdaHaciaDondeApunta(estado.celdas, celda)
+      const celdasAModificar = estado.celdas.filter(celda => celda.maquina).map(celda => {
+        const celdaAModificar = celdaHaciaDondeApunta(estado.celdas, celda)
 
-          // Si la maquina es una starter...
-          if( celdaAModificar ) return {...celdaAModificar, materia: celdaAModificar.materia + celda.maquina.tick(celdaAModificar)}
+        // Si la maquina es una starter...
+        if(celdaAModificar) {
+          return {...celdaAModificar, materia: celdaAModificar.materia + celda.maquina.tick(celdaAModificar)}
         }
       }).filter(celda => celda)
 
-      if ( celdasAModificar.length === 0 ) { 
+      if (celdasAModificar.length === 0) {
         return estado
       }
 

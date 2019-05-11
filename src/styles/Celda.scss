@@ -16,10 +16,14 @@
 .materia-prima {
   border: solid 1px #e9873b;
   background-color:  #e9873b;
-  height: 10px; 
-  width: 10px; 
-  font-size: 8px;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  font-size: 12px;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
   position: absolute;
 }

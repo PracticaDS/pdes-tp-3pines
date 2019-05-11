@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { Fabrica } from "./Fabrica";
+import tick from "../../actions/tick";
 
 const mapStateToProps = (state, ownProps) => ({
   alto: 10,
@@ -7,6 +8,14 @@ const mapStateToProps = (state, ownProps) => ({
   celdas: state.fabrica.celdas
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+const doTick = dispatch => {
+  setInterval(() => {
+    dispatch(tick())
+  }, 1000);
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Fabrica)
+const mapActionsToProps = (dispatch, ownProps) => ({  
+  tick: doTick(dispatch)
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Fabrica)

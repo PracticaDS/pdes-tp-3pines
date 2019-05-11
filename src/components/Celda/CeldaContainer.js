@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Celda from "./Celda";
-import seleccionarCelda from "../../actions/seleccionarCelda";
+import Celda from './Celda';
+import seleccionarCelda from '../../actions/seleccionarCelda';
 
 const mapStateToProps = (state, ownProps) => ({
   seleccionada: ownProps.celda.seleccionada,

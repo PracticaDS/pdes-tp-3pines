@@ -2,6 +2,7 @@ import { AGREGAR_MAQUINA, SELECCIONAR_CELDA, EJECUTAR_ACCION, MOVER_MAQUINA_DE_C
 import { seleccionar, deseleccionar, esIgualA, asignarMaquina, ejecutarAccion, contieneMaquina } from '../models/Celda'
 import { MAQUINAS } from '../constantes'
 import generarCeldas from './generadorDeCeldas'
+import { TICK } from '../actions/tick';
 
 const estadoInicial = {
   celdas: generarCeldas(10, 10),
@@ -10,9 +11,15 @@ const estadoInicial = {
 
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
+    case TICK: {
+      estado.celdas.forEach(celda => celda.maquina ? celda.maquina.tick() : 'do nothing')
+      return estado
+    }
+    
     case SELECCIONAR_CELDA: {
       const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload) ? seleccionar(celda) : deseleccionar(celda))
       return { ...estado, celdas: nuevasCeldas }
+    
     }
     
     case AGREGAR_MAQUINA: {

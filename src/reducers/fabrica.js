@@ -8,7 +8,7 @@ import {
   contieneMaquina,
   armarId
 } from '../models/Celda'
-import { MAQUINAS, STARTER } from '../constantes'
+import {MAQUINAS, STARTER, TRANSPORTER} from '../constantes'
 import { TICK } from '../actions/tick';
 import generarCeldas from './generadorDeCeldas'
 import {ESTE, NORTE, OESTE, SUR} from "../models/Maquina";
@@ -29,29 +29,62 @@ const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => {
 
 const celdaHaciaDondeApunta = (celdas, unaCelda) => {
   switch (unaCelda.maquina.direccion) {
-    case NORTE: { return celdaEnCoordenada(celdas, unaCelda.x + 1, unaCelda.y) }
-    case SUR:   { return celdaEnCoordenada(celdas, unaCelda.x - 1, unaCelda.y) }
-    case ESTE:  { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y - 1) }
-    case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
+    case NORTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
+    case SUR:   { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y - 1) }
+    case ESTE:  { return celdaEnCoordenada(celdas, unaCelda.x - 1, unaCelda.y) }
+    case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x + 1, unaCelda.y) }
     default: return null
   }
+}
+
+const procesarTransporters = (celdas, celdasAfectadas) => {
+  const celdasConMaquinas = celdas.filter(celda => celda.maquina)
+  const transporters = celdasConMaquinas.filter(celda => celda.maquina.nombre === TRANSPORTER)
+
+  return transporters.reduce((celdasAfectadas, celda) => {
+    const celdaAfectada = celdaHaciaDondeApunta(celdas, celda)
+
+    if(celdaAfectada) {
+      const materiaATransportar = celda.materia
+
+      if(materiaATransportar > 0) {
+
+        if(celdasAfectadas[armarId(celda)]) {
+          celdasAfectadas[armarId(celda)] = {...celda, materia: celdasAfectadas[armarId(celda)].materia - materiaATransportar}
+        } else {
+          celdasAfectadas[armarId(celda)] = {...celda, materia: 0}
+        }
+
+        celdasAfectadas[armarId(celdaAfectada)] = {...celdaAfectada, materia: celdaAfectada.materia + materiaATransportar}
+      }
+    }
+
+    return celdasAfectadas
+  }, celdasAfectadas)
+}
+
+const procesarStarters = (celdas, celdasAfectadas) => {
+  const celdasConMaquinas = celdas.filter(celda => celda.maquina)
+  const starters = celdasConMaquinas.filter(celda => celda.maquina.nombre === STARTER)
+
+  return starters.reduce((celdasAfectadas, celda) => {
+    const celdaAfectada = celdaHaciaDondeApunta(celdas, celda)
+
+    if(celdaAfectada) {
+      const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
+      celdasAfectadas[armarId(celdaAfectada)] = {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick()}
+    }
+
+    return celdasAfectadas
+  }, celdasAfectadas)
 }
 
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
     case TICK: {
-      const celdasAfectadas = estado.celdas.filter(celda => celda.maquina).reduce((celdasAfectadas, celda) => {
-        const celdaAfectada = celdaHaciaDondeApunta(estado.celdas, celda)
-
-        if(celdaAfectada) {
-          if (celda.maquina.nombre === STARTER) {
-            const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
-            celdasAfectadas[armarId(celdaAfectada)] = {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick(celdaAfectada)}
-          }
-        }
-
-        return celdasAfectadas
-      }, {})
+      const celdasAfectadas = {}
+      procesarTransporters(estado.celdas, celdasAfectadas)
+      procesarStarters(estado.celdas, celdasAfectadas)
 
       if (Object.keys(celdasAfectadas).length === 0) {
         return estado

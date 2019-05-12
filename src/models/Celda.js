@@ -15,9 +15,9 @@ export const asignarMaquina = (celda, maquina) => {
 }
 
 export const ordenarPorCoordenadas = (unaCelda, otraCelda) => {
-  return unaCelda.x === otraCelda.x ? 
-    unaCelda.y - otraCelda.y : 
-    unaCelda.x - otraCelda.x
+  return unaCelda.y === otraCelda.y ?
+    unaCelda.x - otraCelda.x :
+    unaCelda.y - otraCelda.y
 }
 
 export const ejecutarAccion = (celda, accionAEjecutar) => {

@@ -33,6 +33,7 @@ const celdaHaciaDondeApunta = (celdas, unaCelda) => {
     case SUR:   { return celdaEnCoordenada(celdas, unaCelda.x - 1, unaCelda.y) }
     case ESTE:  { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y - 1) }
     case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
+    default: return null
   }
 }
 

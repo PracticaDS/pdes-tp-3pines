@@ -8,7 +8,7 @@ import {
   contieneMaquina,
   armarId
 } from '../models/Celda'
-import { MAQUINAS } from '../constantes'
+import { MAQUINAS, STARTER } from '../constantes'
 import { TICK } from '../actions/tick';
 import generarCeldas from './generadorDeCeldas'
 import {ESTE, NORTE, OESTE, SUR} from "../models/Maquina";
@@ -43,9 +43,10 @@ function reducer(estado = estadoInicial, { type, payload }) {
         const celdaAfectada = celdaHaciaDondeApunta(estado.celdas, celda)
 
         if(celdaAfectada) {
-          // Si la maquina es una starter...
-          const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
-          celdasAfectadas[armarId(celdaAfectada)] = {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick(celdaAfectada)}
+          if (celda.maquina.nombre === STARTER) {
+            const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
+            celdasAfectadas[armarId(celdaAfectada)] = {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick(celdaAfectada)}
+          }
         }
 
         return celdasAfectadas

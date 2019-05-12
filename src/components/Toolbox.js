@@ -21,7 +21,7 @@ export const Toolbox = ({maquinas, acciones}) => {
 
       <div className="acciones-contenedor">
       	<div className="titulo">Máquinas</div>
-  	    <div className="toolbox-acciones borde-piola">
+  	    <div className="toolbox-acciones borde-redondeado">
 
           <div className="row">
             { agregarMaquinas().slice(0,2) }
@@ -37,7 +37,7 @@ export const Toolbox = ({maquinas, acciones}) => {
 
       <div className="acciones-contenedor">
         <div className="titulo">Edición</div>
-  	    <div className="toolbox-acciones borde-piola">
+  	    <div className="toolbox-acciones borde-redondeado">
           <div className="row">
             { agregarAcciones().slice(0, 2) }
           </div>

@@ -8,7 +8,7 @@ import {
   contieneMaquina,
   armarId
 } from '../models/Celda'
-import { MAQUINAS, STARTER } from '../constantes'
+import { MAQUINAS, STARTER, SELLER } from '../constantes'
 import { TICK } from '../actions/tick';
 import generarCeldas from './generadorDeCeldas'
 import {ESTE, NORTE, OESTE, SUR} from "../models/Maquina";
@@ -20,7 +20,8 @@ const estadoInicial = {
   ancho,
   alto,
   celdas: generarCeldas(ancho, alto),
-  moverDesdeCelda: null
+  moverDesdeCelda: null,
+  materiaVendida: [],
 }
 
 const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => {
@@ -40,13 +41,24 @@ const celdaHaciaDondeApunta = (celdas, unaCelda) => {
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
     case TICK: {
+      const nuevaMateriaVendida = [...estado.materiaVendida]
       const celdasAfectadas = estado.celdas.filter(celda => celda.maquina).reduce((celdasAfectadas, celda) => {
         const celdaAfectada = celdaHaciaDondeApunta(estado.celdas, celda)
 
         if(celdaAfectada) {
           if (celda.maquina.nombre === STARTER) {
-            const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
-            celdasAfectadas[armarId(celdaAfectada)] = {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick(celdaAfectada)}
+            const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? 
+              celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
+            celdasAfectadas[armarId(celdaAfectada)] = 
+              {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick(celdaAfectada)}
+          }
+        }
+
+        if (celda.maquina.nombre === SELLER) {
+          if (celda.materia > 0) {
+            celdasAfectadas[armarId(celda)] = 
+              {...celda, materia: celda.materia-1}
+            nuevaMateriaVendida.push(1)
           }
         }
 
@@ -61,7 +73,9 @@ function reducer(estado = estadoInicial, { type, payload }) {
         return celdasAfectadas[armarId(celda)] ? celdasAfectadas[armarId(celda)] : celda;
       })
 
-      return { ...estado, celdas: nuevasCeldas }
+      return nuevaMateriaVendida.length !== estado.materiaVendida.length ? 
+        { ...estado, celdas: nuevasCeldas, materiaVendida: nuevaMateriaVendida } : 
+        { ...estado, celdas: nuevasCeldas }
     }
     
     case SELECCIONAR_CELDA: {

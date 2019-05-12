@@ -47,11 +47,13 @@ let transporterUrl =  process.env.PUBLIC_URL + '/icons/transporter.svg'
 let transporterActivoUrl =  process.env.PUBLIC_URL + '/icons/transporter_activo.svg'
 
 export const STARTER = 'Starter'
+export const SELLER = 'Seller'
+export const FURNACE = 'Furnace'
 
 export const MAQUINAS = [
   Maquina(STARTER, starterActivoUrl, starterUrl, '1', '10'),
-  Maquina('Seller', sellerActivoUrl, sellerUrl, '1', '15'),
+  Maquina(SELLER, sellerActivoUrl, sellerUrl, '1', '15'),
   Maquina('Crafter', crafterActivoUrl, crafterUrl, '1', '20'),
-  Maquina('Furnace', furnaceActivoUrl, furnaceUrl, '1', '25'),
+  Maquina(FURNACE, furnaceActivoUrl, furnaceUrl, '1', '25'),
   Maquina('Transporter', transporterActivoUrl, transporterUrl, '1', '30', NORTE),
 ]

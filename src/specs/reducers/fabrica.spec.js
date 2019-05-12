@@ -4,7 +4,7 @@ import reducer from '../../reducers/fabrica'
 import generarCeldas from '../../reducers/generadorDeCeldas'
 import { EJECUTAR_ACCION, MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER } from '../../actions/seleccionarCelda'
 import { Celda } from '../../models/Celda'
-import { ACCIONES } from '../../constantes.js'
+import { ACCIONES, SELLER, STARTER, FURNACE } from '../../constantes.js'
 import { ESTE, Maquina, NORTE } from '../../models/Maquina'
 
 describe('fabrica', () => {
@@ -15,7 +15,8 @@ describe('fabrica', () => {
     ancho,
     alto,
     celdas: generarCeldas(ancho, alto),
-    moverDesdeCelda: null
+    moverDesdeCelda: null,
+    materiaVendida: [],
   }
 
   describe('EJECUTAR_ACCION', () => {
@@ -127,7 +128,7 @@ describe('fabrica', () => {
     
     describe('Cuando hay maquinas en la fabrica', () => {
       
-      describe('Si la maquina que hay es un Starter', () => {
+      describe('Cuando la maquina que hay es un Starter', () => {
         it('modifica el estado aumentando la materia en la celda a la que apunta la maquina', () => {
           estadoInicial.celdas[0].maquina = Maquina('Starter')
 
@@ -136,14 +137,14 @@ describe('fabrica', () => {
           })
 
           expect(estadoFinal).not.toEqual(estadoInicial)
-          const celda = estadoFinal.celdas[2] // Deberia ir a buscar la celda con x: 1 e y: 0
+          const celda = estadoFinal.celdas[2]
           expect(celda.materia).toEqual(1)
         })
 
-        describe('Si hay otro starter apuntando a la misma celda', () => {
+        describe('Cuando hay otro starter apuntando a la misma celda', () => {
 
           it('aumenta la cantidad de materia por 2', () => {
-            estadoInicial.celdas[0].maquina = Maquina('Starter')
+            estadoInicial.celdas[0].maquina = Maquina(STARTER)
 
             const estadoIntermedio = reducer(estadoInicial, {
               type: TICK
@@ -153,24 +154,68 @@ describe('fabrica', () => {
             })
   
             expect(estadoFinal).not.toEqual(estadoInicial)
-            const celda = estadoFinal.celdas[2] // Deberia ir a buscar la celda con x: 1 e y: 0
+            const celda = estadoFinal.celdas[2]
             expect(celda.materia).toEqual(2)
           })
         })
       })
 
       // TODO cuando agreguemos más máquinas este test va a volar
-      describe('Si la maquina no era un Starter', () => {
+      describe('Cuando la maquina no era un Starter', () => {
         it('no modifica el estado', () => {
-          estadoInicial.celdas[0].maquina = Maquina('Furnance')
+          estadoInicial.celdas[0].maquina = Maquina(FURNACE)
 
           const estadoFinal = reducer(estadoInicial, {
             type: TICK
           })
 
           expect(estadoFinal).toEqual(estadoInicial)
-          const celda = estadoFinal.celdas[2] // Deberia ir a buscar la celda con x: 1 e y: 0
+          const celda = estadoFinal.celdas[2]
           expect(celda.materia).toEqual(0)
+        })
+      })
+
+      describe('Cuando la maquina es una Seller', () => {
+        
+        describe('Cuando no hay materia en la celda', () => {
+        
+          it('no modifica el estado', () => {
+            estadoInicial.celdas[0].maquina = Maquina(SELLER)
+
+            const estadoFinal = reducer(estadoInicial, {
+              type: TICK
+            })
+  
+            expect(estadoFinal).toEqual(estadoInicial)
+          })
+        })
+        describe('Cuando hay materia en la celda', () => {
+
+          it('la materia desaparece', () => {
+            estadoInicial.celdas[0].maquina = Maquina(SELLER)
+            estadoInicial.celdas[0].materia = 2
+
+            const estadoFinal = reducer(estadoInicial, {
+              type: TICK
+            })
+  
+            expect(estadoFinal).not.toEqual(estadoInicial)
+            const celda = estadoFinal.celdas[0]
+            expect(celda.materia).toEqual(1)
+          })
+
+          it('la materia vendida aumenta', () => {
+            estadoInicial.celdas[0].maquina = Maquina(SELLER)
+            estadoInicial.celdas[0].materia = 2
+            
+            const estadoFinal = reducer(estadoInicial, {
+              type: TICK
+            })
+  
+            expect(estadoFinal).not.toEqual(estadoInicial)
+            expect(estadoFinal.materiaVendida).toContain(1)
+            expect(estadoFinal.materiaVendida.length).toBe(1)
+          })
         })
       })
     })

@@ -14,8 +14,10 @@ const gridFromProps = (props) => ({
 
 export const Fabrica = (props) => {
   return (
-    <div className="fabrica-contenedor" style={ gridFromProps(props) }>
-      { props.celdas.map((celda, index) => <CeldaContainer key={index} celda={celda}/>)}
+    <div className="fabrica-contenedor">
+      <div className="fabrica" style={ gridFromProps(props) }>
+        { props.celdas.map((celda, index) => <CeldaContainer key={index} celda={celda}/>)}
+      </div>
     </div>
   )
 };

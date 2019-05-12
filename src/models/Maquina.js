@@ -1,4 +1,9 @@
-export const Maquina = (nombre,  imagenActivaUrl, imagenInactivaUrl, frecuencia, costo, direccion='Norte', tick) => {
+export const NORTE = 'Norte';
+export const SUR = 'Sur';
+export const ESTE = 'Este';
+export const OESTE = 'Oeste';
+
+export const Maquina = (nombre,  imagenActivaUrl, imagenInactivaUrl, frecuencia, costo, direccion=NORTE) => {
   return {
     nombre,
     imagenActivaUrl,
@@ -6,8 +11,9 @@ export const Maquina = (nombre,  imagenActivaUrl, imagenInactivaUrl, frecuencia,
     frecuencia,
     costo,
     direccion,
-    tick: () => {
-      console.log("tick from maquina")
+    tick() {
+      // Funcionalidad de Starter
+      return 1
     }
   }
 }

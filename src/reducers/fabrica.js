@@ -1,19 +1,66 @@
 import { AGREGAR_MAQUINA, SELECCIONAR_CELDA, EJECUTAR_ACCION, MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER } from '../actions/seleccionarCelda'
-import { seleccionar, deseleccionar, esIgualA, asignarMaquina, ejecutarAccion, contieneMaquina } from '../models/Celda'
-import { MAQUINAS } from '../constantes'
-import generarCeldas from './generadorDeCeldas'
+import {
+  seleccionar,
+  deseleccionar,
+  esIgualA,
+  asignarMaquina,
+  ejecutarAccion,
+  contieneMaquina,
+  armarId
+} from '../models/Celda'
+import { MAQUINAS, STARTER } from '../constantes'
 import { TICK } from '../actions/tick';
+import generarCeldas from './generadorDeCeldas'
+import {ESTE, NORTE, OESTE, SUR} from "../models/Maquina";
+
+const ancho = 10
+const alto = 10
 
 const estadoInicial = {
-  celdas: generarCeldas(10, 10),
+  ancho,
+  alto,
+  celdas: generarCeldas(ancho, alto),
   moverDesdeCelda: null
+}
+
+const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => {
+  return celdas.find(celda => celda.x === coordenadaX && celda.y === coordenadaY)
+}
+
+const celdaHaciaDondeApunta = (celdas, unaCelda) => {
+  switch (unaCelda.maquina.direccion) {
+    case NORTE: { return celdaEnCoordenada(celdas, unaCelda.x + 1, unaCelda.y) }
+    case SUR:   { return celdaEnCoordenada(celdas, unaCelda.x - 1, unaCelda.y) }
+    case ESTE:  { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y - 1) }
+    case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
+  }
 }
 
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
     case TICK: {
-      estado.celdas.forEach(celda => celda.maquina ? celda.maquina.tick() : 'do nothing')
-      return estado
+      const celdasAfectadas = estado.celdas.filter(celda => celda.maquina).reduce((celdasAfectadas, celda) => {
+        const celdaAfectada = celdaHaciaDondeApunta(estado.celdas, celda)
+
+        if(celdaAfectada) {
+          if (celda.maquina.nombre === STARTER) {
+            const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
+            celdasAfectadas[armarId(celdaAfectada)] = {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick(celdaAfectada)}
+          }
+        }
+
+        return celdasAfectadas
+      }, {})
+
+      if (Object.keys(celdasAfectadas).length === 0) {
+        return estado
+      }
+
+      const nuevasCeldas = estado.celdas.map(celda => {
+        return celdasAfectadas[armarId(celda)] ? celdasAfectadas[armarId(celda)] : celda;
+      })
+
+      return { ...estado, celdas: nuevasCeldas }
     }
     
     case SELECCIONAR_CELDA: {

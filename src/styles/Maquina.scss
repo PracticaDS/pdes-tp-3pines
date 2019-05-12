@@ -1,0 +1,21 @@
+@mixin maquina($rotacion) {
+  height: 100%; 
+  width: 100%;
+  transform: rotate($rotacion);
+}
+
+.norte {
+  @include maquina(0deg);
+}
+
+.sur {
+  @include maquina(180deg);
+}
+
+.este {
+  @include maquina(90deg);
+}
+
+.oeste {
+  @include maquina(270deg);
+}

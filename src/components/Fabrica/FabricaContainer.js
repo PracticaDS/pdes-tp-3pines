@@ -3,8 +3,8 @@ import { Fabrica } from "./Fabrica";
 import tick from "../../actions/tick";
 
 const mapStateToProps = (state, ownProps) => ({
-  alto: 10,
-  ancho: 10,
+  alto: state.fabrica.alto,
+  ancho: state.fabrica.ancho,
   celdas: state.fabrica.celdas
 });
 

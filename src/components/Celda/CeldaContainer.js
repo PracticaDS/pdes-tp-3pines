@@ -3,6 +3,7 @@ import Celda from './Celda';
 import seleccionarCelda from '../../actions/seleccionarCelda';
 
 const mapStateToProps = (state, ownProps) => ({
+  celda: ownProps.celda,
   seleccionada: ownProps.celda.seleccionada,
   maquina: ownProps.celda.maquina
 });

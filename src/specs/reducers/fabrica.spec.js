@@ -16,7 +16,7 @@ describe('fabrica', () => {
     alto,
     celdas: generarCeldas(ancho, alto),
     moverDesdeCelda: null,
-    materiaVendida: [],
+    ganancia: 0,
   }
 
   describe('EJECUTAR_ACCION', () => {
@@ -213,8 +213,7 @@ describe('fabrica', () => {
             })
   
             expect(estadoFinal).not.toEqual(estadoInicial)
-            expect(estadoFinal.materiaVendida).toContain(1)
-            expect(estadoFinal.materiaVendida.length).toBe(1)
+            expect(estadoFinal.ganancia).toBe(10)
           })
         })
       })

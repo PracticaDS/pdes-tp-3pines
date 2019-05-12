@@ -1,5 +1,11 @@
 .fabrica-contenedor {	
   grid-area: main;
+
+  display: flex;
+  justify-content: center;
+}
+
+.fabrica {	
   display: grid;
   border: 1px solid #2d2d3e;
 }

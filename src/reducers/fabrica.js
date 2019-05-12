@@ -21,7 +21,7 @@ const estadoInicial = {
   alto,
   celdas: generarCeldas(ancho, alto),
   moverDesdeCelda: null,
-  materiaVendida: [],
+  ganancia: 0,
 }
 
 const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => {
@@ -41,7 +41,7 @@ const celdaHaciaDondeApunta = (celdas, unaCelda) => {
 function reducer(estado = estadoInicial, { type, payload }) {
   switch (type) {
     case TICK: {
-      const nuevaMateriaVendida = [...estado.materiaVendida]
+      let nuevaGanancia = estado.ganancia
       const celdasAfectadas = estado.celdas.filter(celda => celda.maquina).reduce((celdasAfectadas, celda) => {
         const celdaAfectada = celdaHaciaDondeApunta(estado.celdas, celda)
 
@@ -58,7 +58,7 @@ function reducer(estado = estadoInicial, { type, payload }) {
           if (celda.materia > 0) {
             celdasAfectadas[armarId(celda)] = 
               {...celda, materia: celda.materia-1}
-            nuevaMateriaVendida.push(1)
+            nuevaGanancia += 10 // Le sumo diez por sumarle algo, habria que tener en cuenta el precio de la materia
           }
         }
 
@@ -73,8 +73,8 @@ function reducer(estado = estadoInicial, { type, payload }) {
         return celdasAfectadas[armarId(celda)] ? celdasAfectadas[armarId(celda)] : celda;
       })
 
-      return nuevaMateriaVendida.length !== estado.materiaVendida.length ? 
-        { ...estado, celdas: nuevasCeldas, materiaVendida: nuevaMateriaVendida } : 
+      return nuevaGanancia !== estado.ganancia ? 
+        { ...estado, celdas: nuevasCeldas, ganancia: nuevaGanancia } : 
         { ...estado, celdas: nuevasCeldas }
     }
     

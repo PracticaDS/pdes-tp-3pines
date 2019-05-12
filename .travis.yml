@@ -1,14 +1,25 @@
 language: node_js
 
 before_deploy:
+  - git config --local user.name "David Correa"
+  - git config --local user.email "davidjonatan.c@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-'Release'-$(date +'%Y-%m-%d-%H%M%S')}
+  - git tag $TRAVIS_TAG
   - yarn run build
 
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  keep-history: true
-  target-branch: gh-pages
-  local-dir: build
-  on:
-    branch: master
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    target-branch: gh-pages
+    local-dir: build
+    on:
+      branch: master
+
+  - provider: releases
+    name: "Revolución Industrial - 3Pines"
+    api_key: $GITHUB_TOKEN
+    skip_cleanup: true
+    on:
+      branch: master

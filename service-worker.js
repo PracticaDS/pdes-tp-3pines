@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/pdes-tp-3pines/precache-manifest.0d58ad6ebcefe36de084a974a22dc81f.js"
+  "/pdes-tp-3pines/precache-manifest.9e228e316d6438844a2469f601b3629c.js"
 );
 
 workbox.clientsClaim();

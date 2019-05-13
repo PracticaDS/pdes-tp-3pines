@@ -11,7 +11,7 @@ import {
 import { MAQUINAS, STARTER, SELLER } from '../constantes'
 import { TICK } from '../actions/tick';
 import generarCeldas from './generadorDeCeldas'
-import {ESTE, NORTE, OESTE, SUR} from "../models/Maquina";
+import {ESTE, NORTE, OESTE, SUR} from '../models/Maquina';
 
 const ancho = 10
 const alto = 10
@@ -57,7 +57,7 @@ function reducer(estado = estadoInicial, { type, payload }) {
         if (celda.maquina.nombre === SELLER) {
           if (celda.materia > 0) {
             celdasAfectadas[armarId(celda)] = 
-              {...celda, materia: celda.materia-1}
+              {...celda, materia: celda.materia - 1}
             nuevaGanancia += 10 // Le sumo diez por sumarle algo, habria que tener en cuenta el precio de la materia
           }
         }
@@ -81,18 +81,17 @@ function reducer(estado = estadoInicial, { type, payload }) {
     case SELECCIONAR_CELDA: {
       const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload) ? seleccionar(celda) : deseleccionar(celda))
       return { ...estado, celdas: nuevasCeldas }
-    
     }
     
     case AGREGAR_MAQUINA: {
       const maquinaAAgregar = MAQUINAS.find(({ nombre }) => nombre === payload.maquinaAAgregar)
-      const nuevasCeldas = [...estado.celdas].map( celda => esIgualA(celda, payload.celda) ? asignarMaquina(celda, maquinaAAgregar) : celda)
+      const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload.celda) ? asignarMaquina(celda, maquinaAAgregar) : celda)
       return { ...estado, celdas: nuevasCeldas }
     }
     
     case EJECUTAR_ACCION: {
       if (contieneMaquina(payload.celda)) {
-        const nuevasCeldas = [...estado.celdas].map( celda => esIgualA(celda, payload.celda) ? ejecutarAccion(celda, payload.accionAEjecutar) : celda)
+        const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload.celda) ? ejecutarAccion(celda, payload.accionAEjecutar) : celda)
         return { ...estado, celdas: nuevasCeldas }
       }
       return estado
@@ -102,7 +101,7 @@ function reducer(estado = estadoInicial, { type, payload }) {
       return {...estado, moverDesdeCelda: payload.celda}
     }
     case MOVER_MAQUINA_DE_CELDA: {
-      const nuevasCeldas = [...estado.celdas].map( celda => {
+      const nuevasCeldas = [...estado.celdas].map(celda => {
         // Agregar a celda final
         if (esIgualA(celda, payload.celda)) {
           return {...celda, maquina: estado.moverDesdeCelda.maquina} 
@@ -113,7 +112,7 @@ function reducer(estado = estadoInicial, { type, payload }) {
         }
         return celda
       })
-      return { ...estado, celdas: nuevasCeldas, moverDesdeCelda: null}
+      return { ...estado, celdas: nuevasCeldas, moverDesdeCelda: null }
     }
 
     default:

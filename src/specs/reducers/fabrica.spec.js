@@ -39,9 +39,7 @@ describe('fabrica', () => {
     })
     
     describe('Al ejecutar una accion sobre una celda que contiene una maquina', () => {
-      
       describe('Cuando la accion es Rotar', () => {
-        
         it('la maquina contenida en la celda cambia su direccion', () => {
           const estadoInicial = {
             celdas: generarCeldas(1, 1),
@@ -70,7 +68,9 @@ describe('fabrica', () => {
           const estadoInicial = { celdas: generarCeldas(1, 2), moverDesdeCelda: null }
           const seleccionarMaquina = { type: SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER, payload: { celda: celdaOrigen(estadoInicial), accionAEjecutar } }
 
-          beforeEach(() => celdaOrigen(estadoInicial).maquina = maquina)
+          beforeEach(function() {
+            celdaOrigen(estadoInicial).maquina = maquina
+          })
 
           it('marca la celda seleccionada como origen del movimiento', () => {
             const estadoFinal = reducer(estadoInicial, seleccionarMaquina)
@@ -85,7 +85,9 @@ describe('fabrica', () => {
           const estadoIntermedio = reducer(estadoInicial, seleccionarMaquina)
           const seleccionarDestinoMaquina = { type: MOVER_MAQUINA_DE_CELDA, payload: { celda: celdaDestino(estadoIntermedio), accionAEjecutar } }
 
-          beforeEach(() => celdaOrigen(estadoInicial).maquina = maquina)
+          beforeEach(function() {
+            celdaOrigen(estadoInicial).maquina = maquina
+          })
 
           it('mueve la maquina desde la celda seleccionada a la celda destino', () => {
             const estadoFinal = reducer(estadoIntermedio, seleccionarDestinoMaquina)
@@ -98,7 +100,9 @@ describe('fabrica', () => {
           describe('Si la celda destino ya tenía una maquina', () => {
             const otraMaquina = Maquina('Starter', '', '', '1', '10')
 
-            beforeEach(() => celdaDestino(estadoInicial).maquina = otraMaquina)
+            beforeEach(function() {
+              celdaDestino(estadoInicial).maquina = otraMaquina
+            })
 
             it('La mueve a la celda que había sido marcada como destino', () => {
               const estadoFinal = reducer(estadoIntermedio, seleccionarDestinoMaquina)
@@ -114,9 +118,7 @@ describe('fabrica', () => {
   })
 
   describe('TICK', () => {
-    
     describe('Cuando no hay maquinas en la fabrica', () => {
-      
       it('no modifica el estado', () => {
         const estadoFinal = reducer(estadoInicial, {
           type: TICK
@@ -127,7 +129,6 @@ describe('fabrica', () => {
     })
     
     describe('Cuando hay maquinas en la fabrica', () => {
-      
       describe('Cuando la maquina que hay es un Starter', () => {
         it('modifica el estado aumentando la materia en la celda a la que apunta la maquina', () => {
           estadoInicial.celdas[0].maquina = Maquina('Starter')
@@ -142,7 +143,6 @@ describe('fabrica', () => {
         })
 
         describe('Cuando hay otro starter apuntando a la misma celda', () => {
-
           it('aumenta la cantidad de materia por 2', () => {
             estadoInicial.celdas[0].maquina = Maquina(STARTER)
 
@@ -176,9 +176,7 @@ describe('fabrica', () => {
       })
 
       describe('Cuando la maquina es una Seller', () => {
-        
         describe('Cuando no hay materia en la celda', () => {
-        
           it('no modifica el estado', () => {
             estadoInicial.celdas[0].maquina = Maquina(SELLER)
 
@@ -189,8 +187,8 @@ describe('fabrica', () => {
             expect(estadoFinal).toEqual(estadoInicial)
           })
         })
-        describe('Cuando hay materia en la celda', () => {
 
+        describe('Cuando hay materia en la celda', () => {
           it('la materia desaparece', () => {
             estadoInicial.celdas[0].maquina = Maquina(SELLER)
             estadoInicial.celdas[0].materia = 2

@@ -1,10 +1,9 @@
 import '../../setupTests.js'
 import reducer from '../../reducers/acciones'
-import {SELECCIONAR_ACCION} from "../../actions/seleccionarAccion";
+import {SELECCIONAR_ACCION} from '../../actions/seleccionarAccion';
 import { ACCIONES } from '../../constantes.js';
 
 describe('SELECCIONAR_ACCION', () => {
-
   const accionNula = {
     nombre: ''
   }

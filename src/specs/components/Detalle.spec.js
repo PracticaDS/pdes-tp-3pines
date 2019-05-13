@@ -18,15 +18,13 @@ describe('<Toolbox />', () => {
   })
 
   describe('contenido de los detalles', () => {
-
     it('tiene una seccion con el contenido de los detalles', () => {
-    let wrapper = shallow(<Detalle />)
+      let wrapper = shallow(<Detalle />)
 
       expect(wrapper.find('.detalle-contenido')).toHaveLength(1)
     })
 
     describe('cuando NO tiene maquina asociada', () => {
-
       it('no aparece el nombre de la maquina que se selecciono', () => {
         let wrapper = shallow(<Detalle />)
 
@@ -47,7 +45,6 @@ describe('<Toolbox />', () => {
     })
 
     describe('cuando tiene maquina asociada', () => {
-
       it('aparece el nombre de la maquina que se selecciono', () => {
         const maquina = crearMaquina()
         let wrapper = shallow(<Detalle maquina={maquina} />)

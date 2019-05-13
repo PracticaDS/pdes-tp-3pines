@@ -13,6 +13,4 @@ import '../index.css';
 storiesOf('Fabrica', module).add('con columnas', () => <Fabrica />);
 storiesOf('Toolbox', module).add('con maquinas y acciones', () => <Toolbox />);
 storiesOf('Detalle', module).add('vacío', () => <Detalle />)
-                            .add('con una máquina', () =>
-                              <Detalle maquina={new Maquina('Starter', '10', '1')}/>
-                            );
+  .add('con una máquina', () => <Detalle maquina={ new Maquina('Starter', '10', '1') }/>);

@@ -1,0 +1,49 @@
+{
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "standard"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "quotes": "error",
+    "indent": ["error", 2, { "SwitchCase":  1}],
+    "comma-spacing": "error",
+    "space-infix-ops": "error",
+    "padded-blocks": "error",
+    "space-in-parens": "error",
+    "no-unused-vars": "error",
+    "no-return-assign": "error",
+    "standard/object-curly-even-spacing": "error",
+
+    "keyword-spacing": "off",
+    "no-trailing-spaces": "off",
+    "semi": "off",
+    "object-curly-spacing": "off",
+    "operator-linebreak": "off",
+    "space-before-function-paren": "off",
+    "no-tabs": "off",
+    "no-mixed-spaces-and-tabs": "off",
+    "no-extra-boolean-cast": "off",
+    "eol-last": "off",
+    "no-multi-spaces": "off",
+    "comma-dangle": "off",
+    "no-multiple-empty-lines": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-quotes": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

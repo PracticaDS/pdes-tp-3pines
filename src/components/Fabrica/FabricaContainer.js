@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { Fabrica } from "./Fabrica";
-import tick from "../../actions/tick";
+import { Fabrica } from './Fabrica';
+import tick from '../../actions/tick';
 
 const mapStateToProps = (state, ownProps) => ({
   alto: state.fabrica.alto,

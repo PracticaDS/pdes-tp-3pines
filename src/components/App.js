@@ -7,7 +7,7 @@ import FabricaContainer from './Fabrica/FabricaContainer'
 import GananciaContainer from './Ganancia/GananciaContainer';
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div className="app-contenedor">
         <GananciaContainer id="ganancia"/>

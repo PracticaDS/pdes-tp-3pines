@@ -2,7 +2,7 @@ import seleccionarAccion from '../../actions/seleccionarAccion';
 import { connect } from 'react-redux';
 import Accion from './Accion';
 
-function obtenerImagen(state, ownProps) {
+const obtenerImagen = (state, ownProps) => {
   return state.acciones.accionSeleccionada.nombre === ownProps.accion.nombre ?
     ownProps.accion.imagenActivaUrl :
     ownProps.accion.imagenInactivaUrl;

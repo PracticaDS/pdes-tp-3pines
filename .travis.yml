@@ -1,5 +1,7 @@
 language: node_js
 
+script: yarn test && yarn lint
+
 before_deploy:
   - >
     if ! [ "$BEFORE_DEPLOY_RUN" ]; then

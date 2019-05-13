@@ -1,4 +1,4 @@
-import { Celda, ordenarPorCoordenadas } from "../models/Celda";
+import { Celda, ordenarPorCoordenadas } from '../models/Celda';
 
 const generarCeldas = (ancho, alto) => {
   const celdas = Array.from(Array(ancho * alto)).map((_, index) => {

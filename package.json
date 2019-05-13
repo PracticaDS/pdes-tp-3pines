@@ -2,11 +2,10 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://practicads.github.io/pdes-tp-3pines/",
+  "homepage": "https://practicads.github.io/pdes-tp-3pines/",
   "dependencies": {
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "node-sass": "^4.11.0",
     "jest-enzyme": "^7.0.2",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
@@ -28,8 +27,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "build-css": "node-sass --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
+    "lint": "eslint src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +46,18 @@
     "@storybook/react": "^5.0.6",
     "babel-loader": "^8.0.5",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.12.1"
+    "enzyme-adapter-react-16": "^1.12.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-node": "^9.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^2.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "CI=true yarn test && yarn lint"
+    }
   }
 }

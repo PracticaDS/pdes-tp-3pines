@@ -24,13 +24,13 @@ export const Toolbox = ({maquinas, acciones}) => {
   	    <div className="toolbox-acciones borde-redondeado">
 
           <div className="row">
-            { agregarMaquinas().slice(0,2) }
+            { agregarMaquinas().slice(0, 2) }
           </div>
           <div className="row">
-            { agregarMaquinas().slice(2,4) }
+            { agregarMaquinas().slice(2, 4) }
           </div>
           <div className="row">
-            { agregarMaquinas().slice(4,6) }
+            { agregarMaquinas().slice(4, 6) }
           </div>
         </div>
 	    </div>

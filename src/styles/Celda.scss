@@ -13,6 +13,22 @@
   position: relative;
 }
 
+
+.materia-manufacturada {
+  border: solid 1px #e92a92;
+  background-color:  #e92a92;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  font-size: 12px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+}
+
 .materia-prima {
   border: solid 1px #e9873b;
   background-color:  #e9873b;

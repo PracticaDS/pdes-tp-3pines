@@ -9,7 +9,7 @@ import {
   armarId,
   tieneMateriaParaVender
 } from '../models/Celda'
-import { MAQUINAS, STARTER, SELLER, CRAFTER, consumirUnaMateria, resetearCrafter} from '../constantes'
+import { MAQUINAS, STARTER, SELLER, CRAFTER, consumirUnaMateria, resetearCrafter, PRECIO_MATERIA, PRECIO_MATERIA_MANUFACTURADA} from '../constantes'
 import { TICK } from '../actions/tick';
 import generarCeldas from './generadorDeCeldas'
 import {ESTE, NORTE, OESTE, SUR} from "../models/Maquina";
@@ -48,19 +48,24 @@ function reducer(estado = estadoInicial, { type, payload }) {
 
         if(celdaAfectada) {
           if (celda.maquina.nombre === STARTER) {
-            const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ? 
+            const materiaAnterior = celdasAfectadas[armarId(celdaAfectada)] ?
               celdasAfectadas[armarId(celdaAfectada)].materia : celdaAfectada.materia
-            celdasAfectadas[armarId(celdaAfectada)] = 
+            celdasAfectadas[armarId(celdaAfectada)] =
               {...celdaAfectada, materia: materiaAnterior + celda.maquina.tick(celdaAfectada)}
           }
         }
 
         if (celda.maquina.nombre === SELLER) {
-          if (celda.materia > 0 || celda.materiaManufacturada > 0) {
-            celdasAfectadas[armarId(celda)] = 
+          if (celda.materia > 0) {
+            celdasAfectadas[armarId(celda)] =
               {...celda, materia: celda.materia-1}
-            nuevaGanancia += (tieneMateriaParaVender(celda) ? PRECIO_MATERIA_MANUFACTURADA : PRECIO_MATERIA) // Le sumo diez por sumarle algo, habria que tener en cuenta el precio de la materia
+            nuevaGanancia += PRECIO_MATERIA// Le sumo diez por sumarle algo, habria que tener en cuenta el precio de la materia
           }
+            if (celda.materiaManufacturada > 0){
+                celdasAfectadas[armarId(celda)] =
+                    {...celda, materiaManufacturada: celda.materiaManufacturada-1}
+                    nuevaGanancia += PRECIO_MATERIA_MANUFACTURADA
+            }
         }
 
         if (celda.maquina.nombre === CRAFTER && celda.materia > 0){
@@ -87,23 +92,23 @@ function reducer(estado = estadoInicial, { type, payload }) {
         return celdasAfectadas[armarId(celda)] ? celdasAfectadas[armarId(celda)] : celda;
       })
 
-      return nuevaGanancia !== estado.ganancia ? 
-        { ...estado, celdas: nuevasCeldas, ganancia: nuevaGanancia } : 
+      return nuevaGanancia !== estado.ganancia ?
+        { ...estado, celdas: nuevasCeldas, ganancia: nuevaGanancia } :
         { ...estado, celdas: nuevasCeldas }
     }
-    
+
     case SELECCIONAR_CELDA: {
       const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload) ? seleccionar(celda) : deseleccionar(celda))
       return { ...estado, celdas: nuevasCeldas }
-    
+
     }
-    
+
     case AGREGAR_MAQUINA: {
       const maquinaAAgregar = MAQUINAS.find(({ nombre }) => nombre === payload.maquinaAAgregar)
       const nuevasCeldas = [...estado.celdas].map( celda => esIgualA(celda, payload.celda) ? asignarMaquina(celda, maquinaAAgregar) : celda)
       return { ...estado, celdas: nuevasCeldas }
     }
-    
+
     case EJECUTAR_ACCION: {
       if (contieneMaquina(payload.celda)) {
         const nuevasCeldas = [...estado.celdas].map( celda => esIgualA(celda, payload.celda) ? ejecutarAccion(celda, payload.accionAEjecutar) : celda)
@@ -119,7 +124,7 @@ function reducer(estado = estadoInicial, { type, payload }) {
       const nuevasCeldas = [...estado.celdas].map( celda => {
         // Agregar a celda final
         if (esIgualA(celda, payload.celda)) {
-          return {...celda, maquina: estado.moverDesdeCelda.maquina} 
+          return {...celda, maquina: estado.moverDesdeCelda.maquina}
         }
         // Reemplazar contenido de celda inicial por celda final
         if (esIgualA(celda, estado.moverDesdeCelda)) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/Fabrica.scss';
-import CeldaContainer from "../Celda/CeldaContainer";
+import CeldaContainer from '../Celda/CeldaContainer';
 
 const anchoCelda = 55;
 const altoCelda  = 55;
@@ -14,8 +14,8 @@ const gridFromProps = (props) => ({
 
 export const Fabrica = (props) => {
   return (
-    <div className="fabrica-contenedor">
-      <div className="fabrica" style={ gridFromProps(props) }>
+    <div className='fabrica-contenedor'>
+      <div className='fabrica' style={ gridFromProps(props) }>
         { props.celdas.map((celda, index) => <CeldaContainer key={index} celda={celda}/>)}
       </div>
     </div>

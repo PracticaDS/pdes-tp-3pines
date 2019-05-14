@@ -31,20 +31,18 @@ const seleccionarCelda = celdaSeleccionada => {
     }
 
     if(seSeleccionoUnaAccion(accionSeleccionada)) {
-      
       if (accionSeleccionada.nombre === 'Mover') {
         const laCeldaSeleccionadaTieneMaquina = celdaSeleccionada.maquina
         const seHabiaSeleccionadoUnaMaquinaParaMover = getState().fabrica.moverDesdeCelda  
-        if ( !laCeldaSeleccionadaTieneMaquina && !seHabiaSeleccionadoUnaMaquinaParaMover ) {
+        if (!laCeldaSeleccionadaTieneMaquina && !seHabiaSeleccionadoUnaMaquinaParaMover) {
           return 
         }
-        if ( !seHabiaSeleccionadoUnaMaquinaParaMover ) {
+        if (!seHabiaSeleccionadoUnaMaquinaParaMover) {
           dispatch({
             type: SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER,
             payload: { celda: celdaSeleccionada, accionAEjecutar: accionSeleccionada }
           })
-        } 
-        else {
+        } else {
           dispatch({
             type: MOVER_MAQUINA_DE_CELDA,
             payload: { celda: celdaSeleccionada, accionAEjecutar: accionSeleccionada }

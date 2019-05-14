@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import Provider from "react-redux/es/components/Provider";
+import Provider from 'react-redux/es/components/Provider';
 import './index.css';
 import App from './components/App.js';
-import store from "./store";
+import store from './store';
 
 const Root = (
   <Provider store={store}>

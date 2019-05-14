@@ -6,9 +6,9 @@ import {
   asignarMaquina,
   ejecutarAccion,
   contieneMaquina,
-  armarId
+  armarId,
 } from '../models/Celda'
-import { MAQUINAS, STARTER, SELLER } from '../constantes'
+import { MAQUINAS, STARTER, SELLER, CRAFTER, consumirUnaMateria, resetearCrafter} from '../constantes'
 import { TICK } from '../actions/tick';
 import generarCeldas from './generadorDeCeldas'
 import {ESTE, NORTE, OESTE, SUR} from "../models/Maquina";
@@ -59,6 +59,18 @@ function reducer(estado = estadoInicial, { type, payload }) {
             celdasAfectadas[armarId(celda)] = 
               {...celda, materia: celda.materia-1}
             nuevaGanancia += 10 // Le sumo diez por sumarle algo, habria que tener en cuenta el precio de la materia
+          }
+        }
+
+        if (celda.maquina.nombre === CRAFTER && celda.materia > 0){
+          if(celda.maquina.materiaAcumulada < 3){
+            celdasAfectadas[armarId(celda)] =
+                {...celda, materia: celda.materia-1, maquina: consumirUnaMateria(maquina)}
+          }
+          if(celda.maquina.materiaAcumulada === 3){
+            celdasAfectadas[armarId(celda)] =
+                {...celda, maquina: resetearCrafter(maquina)}
+                console.log('escupi un producto!')
           }
         }
 

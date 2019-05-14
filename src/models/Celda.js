@@ -28,6 +28,10 @@ export const contieneMaquina = (celda) => {
   return celda.maquina !== null 
 }
 
+export const tieneMateriaParaVender = (celda) => {
+  return celda.materia > 0 || celda.materiaManufacturada > 0
+}
+
 export const armarId = (celda) => {
   return `${celda.x}-${celda.y}`
 }
@@ -37,6 +41,7 @@ export const Celda = (x, y, maquina = null) => {
     seleccionada: false,
     maquina,
     materia: 0,
+    materiaManufacturada: 0,
     x,
     y
   }

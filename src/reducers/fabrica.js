@@ -59,7 +59,7 @@ function reducer(estado = estadoInicial, { type, payload }) {
           if (celda.materia > 0 || celda.materiaManufacturada > 0) {
             celdasAfectadas[armarId(celda)] = 
               {...celda, materia: celda.materia-1}
-            nuevaGanancia += (tieneMateriaParaVender(celda) ? 50 : 10) // Le sumo diez por sumarle algo, habria que tener en cuenta el precio de la materia
+            nuevaGanancia += (tieneMateriaParaVender(celda) ? PRECIO_MATERIA_MANUFACTURADA : PRECIO_MATERIA) // Le sumo diez por sumarle algo, habria que tener en cuenta el precio de la materia
           }
         }
 

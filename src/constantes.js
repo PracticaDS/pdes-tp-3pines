@@ -33,6 +33,8 @@ const accionEliminar = {
   }
 }
 
+export const PRECIO_MATERIA_MANUFACTURADA = 50;
+export const PRECIO_MATERIA = 10;
 export const ACCIONES = [
   Accion('Rotar', rotarActivoUrl, rotarUrl, accionRotar),
   Accion('Eliminar', eliminarActivoUrl, eliminarUrl, accionEliminar),

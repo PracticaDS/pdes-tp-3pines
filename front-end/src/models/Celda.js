@@ -1,3 +1,19 @@
+import { NORTE, SUR, ESTE, OESTE } from './Maquina'
+
+const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => {
+  return celdas.find(celda => celda.x === coordenadaX && celda.y === coordenadaY)
+}
+
+export const celdaHaciaDondeApunta = (celdas, unaCelda) => {
+  switch (unaCelda.maquina.direccion) {
+    case NORTE: { return celdaEnCoordenada(celdas, unaCelda.x + 1, unaCelda.y) }
+    case SUR:   { return celdaEnCoordenada(celdas, unaCelda.x - 1, unaCelda.y) }
+    case ESTE:  { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y - 1) }
+    case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
+    default: return null
+  }
+}
+
 export const seleccionar = (celda) => {
   return celda.seleccionada ? celda : { ...celda, seleccionada: true }
 }

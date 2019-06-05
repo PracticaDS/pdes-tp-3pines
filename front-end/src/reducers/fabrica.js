@@ -1,17 +1,9 @@
-import { AGREGAR_MAQUINA, SELECCIONAR_CELDA, EJECUTAR_ACCION, MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER } from '../actions/seleccionarCelda'
-import {
-  seleccionar,
-  deseleccionar,
-  esIgualA,
-  asignarMaquina,
-  ejecutarAccion,
-  contieneMaquina,
-  armarId
-} from '../models/Celda'
-import { MAQUINAS, STARTER, SELLER } from '../constantes'
+import { contieneMaquina, armarId, celdaHaciaDondeApunta } from '../models/Celda';
+import generarCeldas from './generadorDeCeldas';
+import { STARTER, SELLER } from '../constantes';
 import { TICK } from '../actions/tick';
-import generarCeldas from './generadorDeCeldas'
-import {ESTE, NORTE, OESTE, SUR} from '../models/Maquina';
+import { reducerDeCelda } from './celdas';
+import { MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER, EJECUTAR_ACCION, AGREGAR_MAQUINA, SELECCIONAR_CELDA } from '../actions/seleccionarCelda';
 
 const ancho = 10
 const alto = 10
@@ -24,18 +16,8 @@ const estadoInicial = {
   ganancia: 0,
 }
 
-const celdaEnCoordenada = (celdas, coordenadaX, coordenadaY) => {
-  return celdas.find(celda => celda.x === coordenadaX && celda.y === coordenadaY)
-}
-
-const celdaHaciaDondeApunta = (celdas, unaCelda) => {
-  switch (unaCelda.maquina.direccion) {
-    case NORTE: { return celdaEnCoordenada(celdas, unaCelda.x + 1, unaCelda.y) }
-    case SUR:   { return celdaEnCoordenada(celdas, unaCelda.x - 1, unaCelda.y) }
-    case ESTE:  { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y - 1) }
-    case OESTE: { return celdaEnCoordenada(celdas, unaCelda.x, unaCelda.y + 1) }
-    default: return null
-  }
+const nuevasCeldas = (estado, accion) => {
+  return [...estado.celdas].map(celda => reducerDeCelda(celda, accion))
 }
 
 function reducer(estado = estadoInicial, { type, payload }) {
@@ -70,29 +52,25 @@ function reducer(estado = estadoInicial, { type, payload }) {
       }
 
       const nuevasCeldas = estado.celdas.map(celda => {
-        return celdasAfectadas[armarId(celda)] ? celdasAfectadas[armarId(celda)] : celda;
+        return celdasAfectadas[armarId(celda)] ? celdasAfectadas[armarId(celda)] : celda
       })
 
       return nuevaGanancia !== estado.ganancia ? 
         { ...estado, celdas: nuevasCeldas, ganancia: nuevaGanancia } : 
         { ...estado, celdas: nuevasCeldas }
     }
-    
+
     case SELECCIONAR_CELDA: {
-      const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload) ? seleccionar(celda) : deseleccionar(celda))
-      return { ...estado, celdas: nuevasCeldas }
+      return {...estado, celdas: nuevasCeldas(estado, { type, payload })}
     }
-    
+
     case AGREGAR_MAQUINA: {
-      const maquinaAAgregar = MAQUINAS.find(({ nombre }) => nombre === payload.maquinaAAgregar)
-      const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload.celda) ? asignarMaquina(celda, maquinaAAgregar) : celda)
-      return { ...estado, celdas: nuevasCeldas }
+      return {...estado, celdas: nuevasCeldas(estado, { type, payload })}
     }
-    
+
     case EJECUTAR_ACCION: {
       if (contieneMaquina(payload.celda)) {
-        const nuevasCeldas = [...estado.celdas].map(celda => esIgualA(celda, payload.celda) ? ejecutarAccion(celda, payload.accionAEjecutar) : celda)
-        return { ...estado, celdas: nuevasCeldas }
+        return {...estado, celdas: nuevasCeldas(estado, { type, payload })}
       }
       return estado
     }
@@ -100,19 +78,10 @@ function reducer(estado = estadoInicial, { type, payload }) {
     case SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER: {
       return {...estado, moverDesdeCelda: payload.celda}
     }
+
     case MOVER_MAQUINA_DE_CELDA: {
-      const nuevasCeldas = [...estado.celdas].map(celda => {
-        // Agregar a celda final
-        if (esIgualA(celda, payload.celda)) {
-          return {...celda, maquina: estado.moverDesdeCelda.maquina} 
-        }
-        // Reemplazar contenido de celda inicial por celda final
-        if (esIgualA(celda, estado.moverDesdeCelda)) {
-          return {...celda, maquina: payload.celda.maquina}
-        }
-        return celda
-      })
-      return { ...estado, celdas: nuevasCeldas, moverDesdeCelda: null }
+      const nuevoPayload = {...payload, moverDesdeCelda: estado.moverDesdeCelda}
+      return {...estado, celdas: nuevasCeldas(estado, {type, payload: nuevoPayload}), moverDesdeCelda: null}
     }
 
     default:

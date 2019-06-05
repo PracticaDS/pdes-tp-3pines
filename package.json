@@ -1,0 +1,17 @@
+{
+  "name": "RevolucionIndustrial",
+  "version": "0.0.1",
+  "private": true,
+  "homepage": "https://practicads.github.io/pdes-tp-3pines/",
+  "scripts": {
+    "ci": "cd front-end/ && yarn test && yarn lint && cd ../back-end/ && yarn test-ci"
+  },
+  "devDependencies": {
+    "husky": "^2.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "CI=true yarn ci"
+    }
+  }
+}

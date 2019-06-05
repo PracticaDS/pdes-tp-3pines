@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node -- index",
     "test": "jest --runInBand --watch",
+    "test-ci": "jest --runInBand",
     "lint": "eslint \"**/*.js\""
   },
   "devDependencies": {

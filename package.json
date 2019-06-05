@@ -4,14 +4,15 @@
   "private": true,
   "homepage": "https://practicads.github.io/pdes-tp-3pines/",
   "scripts": {
-    "ci": "cd front-end/ && yarn test && yarn lint && cd ../back-end/ && yarn test-ci"
+    "commit-hook": "cd front-end/ && yarn lint && cd ../back-end/",
+    "ci": "cd front-end/ && yarn install && yarn test && yarn lint && cd ../back-end/ && yarn install && yarn test-ci"
   },
   "devDependencies": {
     "husky": "^2.2.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "CI=true yarn ci"
+      "pre-commit": "CI=true yarn commit-hook"
     }
   }
 }

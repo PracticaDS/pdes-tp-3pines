@@ -1,8 +1,13 @@
 {
   "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "script",
+    "ecmaVersion": 6,
+    "allowImportExportEverywhere": true
+  },
   "plugins": ["node", "jest"],
   "extends": ["eslint:recommended", "plugin:node/recommended", "plugin:jest/recommended"],
-  "rules": {,
+  "rules": {
     "no-console": "warn",
     "comma-dangle": [2, "never"],
     "semi": 0,

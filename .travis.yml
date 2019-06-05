@@ -1,6 +1,6 @@
 language: node_js
 
-script: yarn test && yarn lint
+script: cd front-end/ && yarn atest && yarn lint && cd ../back-end/ && yarn atest && yarn lint 
 
 before_deploy:
   - >

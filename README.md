@@ -8,9 +8,9 @@
 # Armado del ambiente de desarrollo
 
 Para armar el ambiente de desarrollo es necesario tener instalado [Yarn](https://yarnpkg.com/en/).
-Clonar el repositorio y en el root ejecutar `nvm use & yarn install`.
+Clonar el repositorio y en el root ejecutar `nvm use && yarn install && cd front-end/ && yarn install cd ../back-end/ && yarn install`.
 
-# Proceso de desarrollo
+## Proceso de desarrollo
 
 1. Asignarse un issue
 2. Crear un branch que salga de master y ponerle `#issue-nombre-del-branch` (ejemplo: `2-agregar-travis`)
@@ -20,10 +20,15 @@ Clonar el repositorio y en el root ejecutar `nvm use & yarn install`.
 6. Corregir los comentarios si es que existen
 
 
-# Testing
+### Testing
 
-Estamos usando `jest-enzyme` para nuestros tests.
+Estamos usando `jest-enzyme` para nuestros tests de **front-end**.
 
 > [Documentación](https://github.com/FormidableLabs/enzyme-matchers/blob/master/packages/jest-enzyme/README.md)
 
 > [Assertions](https://github.com/FormidableLabs/enzyme-matchers/blob/master/packages/jest-enzyme/README.md#assertions)
+
+Estamos usando `supertest` para nuestros tests de **back-end**
+
+> [Documentación](https://github.com/visionmedia/supertest)
+

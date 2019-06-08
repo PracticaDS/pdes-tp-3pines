@@ -5,10 +5,14 @@ import Provider from 'react-redux/es/components/Provider';
 import './index.css';
 import App from './components/App.js';
 import store from './store';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 const Root = (
   <Provider store={store}>
-    <App />
+    <Router>
+      <Route path="/" component={App} />
+    </Router>
   </Provider>
 );
 

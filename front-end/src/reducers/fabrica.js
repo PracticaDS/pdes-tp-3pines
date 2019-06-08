@@ -4,6 +4,8 @@ import { STARTER, SELLER } from '../constantes';
 import { TICK } from '../actions/tick';
 import { reducerDeCelda } from './celdas';
 import { MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER, EJECUTAR_ACCION, AGREGAR_MAQUINA, SELECCIONAR_CELDA } from '../actions/seleccionarCelda';
+import { MOSTRAR_MENSAJE_DE_ERROR } from '../actions/mostrarMensajeDeError';
+import { SETEAR_USUARIO } from '../actions/setUsuario';
 
 const ancho = 10
 const alto = 10
@@ -14,6 +16,8 @@ const estadoInicial = {
   celdas: generarCeldas(ancho, alto),
   moverDesdeCelda: null,
   ganancia: 0,
+  usuario: {},
+  mensajeDeError: ''
 }
 
 const nuevasCeldas = (estado, accion) => {
@@ -82,6 +86,14 @@ function reducer(estado = estadoInicial, { type, payload }) {
     case MOVER_MAQUINA_DE_CELDA: {
       const nuevoPayload = {...payload, moverDesdeCelda: estado.moverDesdeCelda}
       return {...estado, celdas: nuevasCeldas(estado, {type, payload: nuevoPayload}), moverDesdeCelda: null}
+    }
+
+    case SETEAR_USUARIO: {
+      return {...estado, usuario: payload}
+    }
+
+    case MOSTRAR_MENSAJE_DE_ERROR: {
+      return {...estado, mensajeDeError: payload.error}      
     }
 
     default:

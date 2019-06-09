@@ -11,19 +11,13 @@ router.get('/', (req, res) => {
   res.json({ status: "ok" })
 })
 
-router.post('/login', (req, res) => {
-  const usuario = new Usuario(
-      {
-          _id: new mongoose.Types.ObjectId(),
-          nombre: req.body.nombre
-      }
-  )
-  usuario.save()
-      .then(result => res.json({ status: "ok", usuario }))
-      .catch(error => res.json({ status: 'error', error }))
-
-  //applicacion.logearUsuario(req.body.usuario)
-
+router.get('/:usuario', (req, res) => {
+   Usuario.find({nombre: req.params.usuario})
+      .exec()
+      .then(doc =>res.status(200).json(doc))
+      .catch(error => {
+          res.status(500).json({error: error})
+      })
 })
 
 export default router

@@ -18,6 +18,7 @@ describe('API', () => {
       return request(app)
         .get('/pepe')
           .then(response => {
+            expect(response.status).toBe(200)
             expect(response.body.usuario.nombre).toEqual('pepe')
           })
     })

@@ -1,4 +1,3 @@
-// Action creator
 export const SELECCIONAR_ACCION = 'SELECCIONAR_ACCION'
 
 const seleccionarAccion = accionSeleccionada => {

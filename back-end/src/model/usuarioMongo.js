@@ -6,7 +6,7 @@ const usuarioSchema = mongoose.Schema({
         type: String,
         required: [true, 'Necesitas un nombre para poder crear un usuario'],
         unique: true
-    }
+    },
 });
 
 module.exports = mongoose.model('Usuario', usuarioSchema)

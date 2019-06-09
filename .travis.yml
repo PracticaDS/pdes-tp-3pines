@@ -2,6 +2,8 @@ language: node_js
 
 script: yarn run ci
 
+services: mongodb
+
 before_deploy:
   - >
     if ! [ "$BEFORE_DEPLOY_RUN" ]; then

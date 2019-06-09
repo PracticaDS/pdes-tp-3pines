@@ -15,15 +15,15 @@ describe('API', () => {
 
     it('/api devuelve ok', (done) => {
         request(app)
-            .get('/')
+            .get('/api')
             .expect(OK)
             .end(done);
     })
 
-    describe('/:usuario', () => {
+    describe('/api/:usuario', () => {
         it('Creates and return a new user', (done) => {
             request(app)
-                .get('/pepe')
+                .get('/api/pepe')
                 .expect(OK)
                 .expect((res) => {
                     assert.include(res.body.usuario, {nombre: 'pepe'});
@@ -34,15 +34,4 @@ describe('API', () => {
     });
 })
 
-   /* it('devuelve el usuario con el nombre del query param usuario', () => {
-      const usuario = { nombre: 'pepe'};
-      let nombreDeUsuario = null;
-      request(app)
-        .get('/pepe')
-          .then(response => {
-            expect(response.status).toBe(200)
-            expect(response.body.usuario.nombre).toEqual('pepe')
-          })
-    })
-  })*/
 

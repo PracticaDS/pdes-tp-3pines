@@ -9,7 +9,7 @@ const applicacion = new FabricaApp()
 
 router.get('/', (req, res) => {
   res.json({ status: "ok" })
-})
+});
 
 router.get('/:usuario', (req, res) => {
    Usuario.findOneAndUpdate({nombre: req.params.usuario}, {nombre: req.params.usuario}, {upsert: true, new:true})

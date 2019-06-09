@@ -8,7 +8,7 @@ describe('API', () => {
     return request(app)
       .get('/')
       .expect(200, { status: 'ok' })
-  })
+  });
 
   describe('/:usuario', () => {
 

@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 router.get('/:usuario', (req, res) => {
    Usuario.findOneAndUpdate({nombre: req.params.usuario}, {nombre: req.params.usuario}, {upsert: true, new:true})
        .exec()
-       .then(doc => res.status(200).json(doc))
+       .then(doc => res.status(200).json({status: 'ok', usuario:doc }))
        .catch(error => res.status(500).json({error: error}))
 })
 

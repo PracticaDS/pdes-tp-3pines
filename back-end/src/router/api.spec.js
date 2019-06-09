@@ -6,19 +6,20 @@ describe('API', () => {
   it('/api devuelve ok', () => {
     
     return request(app)
-      .get('/api/')
+      .get('/')
       .expect(200, { status: 'ok' })
   })
 
-  describe('/api/login', () => {
+  describe('/:usuario', () => {
 
-    it('devuelve ok', () => {
-      const usuario = { nombre: 'pepe'}
-
+    it('devuelve el usuario con el nombre del query param usuario', () => {
+      const usuario = { nombre: 'pepe'};
+      let nombreDeUsuario = null;
       return request(app)
-        .post('/api/login')
-        .send({usuario})
-        .expect(200, { status: 'ok', usuario})
+        .get('/pepe')
+          .then(response => {
+            expect(response.body.usuario.nombre).toEqual('pepe')
+          })
     })
   })
 })

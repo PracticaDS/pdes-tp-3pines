@@ -5,10 +5,15 @@ import Provider from 'react-redux/es/components/Provider';
 import './index.css';
 import App from './components/App.js';
 import store from './store';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import LoginContainer from './components/Login/LoginContainer';
 
 const Root = (
   <Provider store={store}>
-    <App />
+    <Router>
+      <Route path="/login" component={LoginContainer} />
+      <Route path="/fabrica" component={App} />
+    </Router>
   </Provider>
 );
 

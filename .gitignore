@@ -1,4 +1,6 @@
 # ides
+.idea
+.vscode/
 back-end/.idea
 front-end/.idea
 

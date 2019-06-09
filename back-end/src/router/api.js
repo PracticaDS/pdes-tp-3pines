@@ -19,11 +19,11 @@ router.post('/login', (req, res) => {
       }
   )
   usuario.save()
-      .then(result => console.log(result))
-      .catch(error => console.log(error))
+      .then(result => res.json({ status: "ok", usuario }))
+      .catch(error => res.json({ status: 'error', error }))
 
   //applicacion.logearUsuario(req.body.usuario)
-  res.json({ status: "ok", usuario })
+
 })
 
 export default router

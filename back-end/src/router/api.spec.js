@@ -8,6 +8,7 @@ describe('API', () => {
     return request(app)
       .get('/')
       .expect(200, { status: 'ok' })
+        .done();
   });
 
   describe('/:usuario', () => {
@@ -21,6 +22,8 @@ describe('API', () => {
             expect(response.status).toBe(200)
             expect(response.body.usuario.nombre).toEqual('pepe')
           })
+        done()
     })
   })
+    afterAll(() => mongoose.disconnect());
 })

@@ -2,10 +2,16 @@ import request from 'supertest'
 const { OK, CREATED, NOT_FOUND } = require('http-status-codes');
 import app from '../server'
 import chai from 'chai'
+import mongoose from 'mongoose'
 
 const { assert } = chai;
 
 describe('API', () => {
+
+    beforeEach(()=> {mongoose.connect('mongodb+srv://pdes-grupo2:3pines@pdes-grupo2-lgx7t.mongodb.net/test?retryWrites=true&w=majority', {
+        useNewUrlParser: true
+    })})
+    afterEach(() => mongoose.connection.close());
 
     it('/api devuelve ok', (done) => {
         request(app)

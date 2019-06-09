@@ -8,10 +8,10 @@ const { assert } = chai;
 
 describe('API', () => {
 
-    beforeEach(()=> {mongoose.connect('mongodb+srv://pdes-grupo2:3pines@pdes-grupo2-lgx7t.mongodb.net/test?retryWrites=true&w=majority', {
-        useNewUrlParser: true
-    })})
-    afterEach(() => mongoose.connection.close());
+    beforeEach(done => mongoose.connection.createCollection('usuarios', done));
+    afterEach(done => {
+        mongoose.connection.dropCollection('usuarios', done)
+    });
 
     it('/api devuelve ok', (done) => {
         request(app)

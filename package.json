@@ -14,5 +14,8 @@
     "hooks": {
       "pre-commit": "CI=true yarn commit-hook"
     }
+  },
+  "dependencies": {
+    "mongoose": "^5.5.14"
   }
 }

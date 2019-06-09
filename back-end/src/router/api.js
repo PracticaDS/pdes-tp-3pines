@@ -1,17 +1,29 @@
 import { Router } from 'express'
+import mongoose from 'mongoose'
 import FabricaApp from '../model/fabrica-app';
+import Usuario from '../model/usuarioMongo';
 
 const router = Router()
-const app = new FabricaApp()
+const applicacion = new FabricaApp()
 
-router.get('/', (req, res) => { 
-  res.json({ status: "ok" }) 
+
+router.get('/', (req, res) => {
+  res.json({ status: "ok" })
 })
 
 router.post('/login', (req, res) => {
-  const nombre = req.body.usuario
-  app.logearUsuario(nombre)
-  res.json({ status: "ok", usuario: nombre }) 
+  const usuario = new Usuario(
+      {
+          _id: new mongoose.Types.ObjectId(),
+          nombre: req.body.usuario
+      }
+  )
+  usuario.save()
+      .then(result => console.log(result))
+      .catch(error => console.log(error))
+
+  //applicacion.logearUsuario(req.body.usuario)
+  res.json({ status: "ok", usuario })
 })
 
 export default router

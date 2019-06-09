@@ -15,7 +15,7 @@ router.post('/login', (req, res) => {
   const usuario = new Usuario(
       {
           _id: new mongoose.Types.ObjectId(),
-          nombre: req.body.usuario
+          nombre: req.body.nombre
       }
   )
   usuario.save()

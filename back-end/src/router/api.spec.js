@@ -1,5 +1,5 @@
 import request from 'supertest'
-const { OK, CREATED, NOT_FOUND } = require('http-status-codes');
+const { OK } = require('http-status-codes');
 import app from '../server'
 import chai from 'chai'
 import mongoose from 'mongoose'
@@ -20,13 +20,14 @@ describe('API', () => {
             .end(done);
     })
 
-    describe('/api/:usuario', () => {
-        it('Creates and return a new user', (done) => {
+    describe('/login', () => {
+        it('Logea el usuario y lo devuelve', (done) => {
             request(app)
-                .get('/api/pepe')
+                .post('/api/login')
+                .send({ nombre: 'pepe' })
                 .expect(OK)
                 .expect((res) => {
-                    assert.include(res.body.usuario, {nombre: 'pepe'});
+                    assert.include(res.body, {nombre: 'pepe'});
                 })
                 .end(done);
         })

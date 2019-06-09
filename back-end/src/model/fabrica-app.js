@@ -1,24 +1,20 @@
-import Usuario from "./usuario";
+import Usuario from '../model/usuarioMongo';
 
 class FabricaApp {
   constructor() {
-    this.usuarios = []
-    this.usuariosLogeados = []
-  } 
+  }
   
-  logearUsuario(nombreDeUsuario) {
-    const usuario = new Usuario(nombreDeUsuario)
-    const usuarioExiste = this.usuarios.some(u => u.nombre === nombreDeUsuario)
-    const usuarioEstaLoggeado = this.usuariosLogeados.some(u => u.nombre === nombreDeUsuario)
-    
-    if (!usuarioExiste) {
-      console.log('Nuevo usuario creado: ', nombreDeUsuario)
-      this.usuarios.push(usuario)
-    }
-    if (!usuarioEstaLoggeado) {
-      console.log('Nuevo usuario logeado: ', nombreDeUsuario)
-      this.usuariosLogeados.push(usuario)
-    }
+  logearUsuario(nombreDeUsuario, onSuccess, onError) {
+    Usuario.findOneAndUpdate({nombre: nombreDeUsuario}, {nombre: nombreDeUsuario}, {upsert: true, new:true})
+        .exec()
+        .then(doc => {
+            onSuccess()
+            console.log('Usuario loggeado: ' , nombreDeUsuario)
+        })
+        .catch(error => {
+            onError()
+            console.log('Se produjo un error')
+        })
   }
 }
 

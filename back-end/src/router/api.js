@@ -1,21 +1,20 @@
 import { Router } from 'express'
-import mongoose from 'mongoose'
 import FabricaApp from '../model/fabrica-app';
-import Usuario from '../model/usuarioMongo';
+
 
 const router = Router()
-const applicacion = new FabricaApp()
+const aplicacion = new FabricaApp()
 
 
 router.get('/', (req, res) => {
   res.json({ status: "ok" })
 });
 
-router.get('/:usuario', (req, res) => {
-   Usuario.findOneAndUpdate({nombre: req.params.usuario}, {nombre: req.params.usuario}, {upsert: true, new:true})
-       .exec()
-       .then(doc => res.status(200).json({status: 'ok', usuario:doc }))
-       .catch(error => res.status(500).json({error: error}))
+router.post('/login', (req, res) => {
+    const nombre = req.body.nombre
+    aplicacion.logearUsuario(nombre,
+        () => res.json({ status: "ok", nombre: nombre }),
+        () => res.status(403))
 })
 
 export default router

@@ -1,8 +1,9 @@
 import FabricaApp from "./fabrica-app";
-import Usuario from "./usuario";
+import Usuario from "./usuarioMongo";
 
 describe('FabricaApp', () => {
   let app
+  const usuariosCreados = () => Usuario.count({}, (error, count) => count)
 
   beforeEach(() => {
     app = new FabricaApp()

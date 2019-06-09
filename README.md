@@ -32,3 +32,8 @@ Estamos usando `supertest` para nuestros tests de **back-end**
 
 > [Documentación](https://github.com/visionmedia/supertest)
 
+Estamos usando `cypress` para nuestros tests **e2e**
+
+> [Documentación](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html#Add-a-test-file)
+
+> Podria faltarte la libreia `libgconf2-4`, instalarla usando `sudo apt -y install libgconf2-4`

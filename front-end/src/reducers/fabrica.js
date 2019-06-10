@@ -89,7 +89,7 @@ function reducer(estado = estadoInicial, { type, payload }) {
     }
 
     case SETEAR_USUARIO: {
-      return {...estado, usuario: payload}
+      return {...estado, usuario: { nombre: payload }}
     }
 
     case MOSTRAR_MENSAJE_DE_ERROR: {

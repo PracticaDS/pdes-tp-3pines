@@ -1,7 +1,6 @@
-describe("Una vez cargada la pagina", () => {
-
+describe("Una vez cargada la App", () => {
   beforeEach("Cargar la pagina de login", () => {
-    cy.visit("http://localhost:3000/login")
+    cy.visit("/login")
   });
 
   it("debe aparecer el formulario de login", () => {
@@ -15,5 +14,11 @@ describe("Una vez cargada la pagina", () => {
 
     cy.get('button')
       .click()
+
+    cy.location('pathname', { timeout: 10000 })
+      .should('eq', "/fabrica")
+
+    cy.get("#nombre-usuario")  
+      .should('contain', "Pepe")
   })
 })

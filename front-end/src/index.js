@@ -4,16 +4,20 @@ import * as serviceWorker from './serviceWorker';
 import Provider from 'react-redux/es/components/Provider';
 import './index.css';
 import App from './components/App.js';
-import store from './store';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import store, { history } from './store';
+import { ConnectedRouter } from 'connected-react-router'
+import { BrowserRouter as Route, Switch, Redirect } from 'react-router-dom'
 import LoginContainer from './components/Login/LoginContainer';
 
 const Root = (
   <Provider store={store}>
-    <Router>
-      <Route path="/login" component={LoginContainer} />
-      <Route path="/fabrica" component={App} />
-    </Router>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Redirect exact path="/" to={'login'}/>
+        <Route path="/login" component={LoginContainer} />
+        <Route path="/fabrica" component={App} />
+      </Switch>
+    </ConnectedRouter>
   </Provider>
 );
 

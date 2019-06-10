@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://practicads.github.io/pdes-tp-3pines/",
   "dependencies": {
+    "connected-react-router": "^6.4.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "jest-enzyme": "^7.0.2",

@@ -1,6 +1,18 @@
 language: node_js
 
-script: yarn run ci
+node_js:
+  - "11"
+
+services: 
+  - mongodb
+
+before_script: 
+  - cd back-end && yarn install && cd ..
+  - cd front-end && yarn install && cd ..
+
+script:
+  - cd back-end && yarn test-ci && cd ..
+  - cd front-end && yarn test && yarn lint && cd ..
 
 before_deploy:
   - >
@@ -9,7 +21,7 @@ before_deploy:
     
       git config --local user.name "David Correa"
       git config --local user.email "davidjonatan.c@gmail.com"
-      export TRAVIS_TAG=${TRAVIS_TAG:-'Front-End-Release'-$(date +'%Y-%m-%d-%H%M%S')}
+      export TRAVIS_TAG=${TRAVIS_TAG:-'Release'-$(date +'%Y-%m-%d-%H%M%S')}
       git tag $TRAVIS_TAG
 
       cd front-end/ && yarn run build

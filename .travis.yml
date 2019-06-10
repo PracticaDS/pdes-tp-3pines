@@ -33,7 +33,7 @@ deploy:
     github-token: $GITHUB_TOKEN
     keep-history: true
     target-branch: gh-pages
-    local-dir: front-end/sbuild
+    local-dir: front-end/build
     on:
       branch: master
 

@@ -43,9 +43,7 @@ const handleError = async (accion, mensaje) => {
 const api = {
   logearUsuario: async (usuario) => {
     return handleError(
-      async () => {
-        post('/login', {usuario})
-      },
+      async () => { return post('/login', {usuario}) }, 
       `Error al logear usaurio.\nStackTrace: `
     )
   },

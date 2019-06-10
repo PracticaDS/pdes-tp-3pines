@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  const nombre = req.body.nombre
+  const nombre = req.body.usuario.nombre
 
   app.logearUsuario(nombre, (error, response) => {
     res.json({ status: "ok", nombre: nombre })

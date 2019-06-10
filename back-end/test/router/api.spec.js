@@ -18,7 +18,7 @@ describe('API', () => {
     it('Logea el usuario y lo devuelve', (done) => {
       request(app)
         .post('/api/login')
-        .send({ nombre: 'pepe' })
+        .send({ usuario: { nombre: 'pepe' }})
         .expect(OK)
         .expect((res) => {
             assert.include(res.body, {nombre: 'pepe'});

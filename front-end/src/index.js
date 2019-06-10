@@ -5,18 +5,15 @@ import Provider from 'react-redux/es/components/Provider';
 import './index.css';
 import App from './components/App.js';
 import store, { history } from './store';
-import { ConnectedRouter } from 'connected-react-router'
-import { BrowserRouter as Route, Switch, Redirect } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router';
+import { Route } from 'react-router-dom';
 import LoginContainer from './components/Login/LoginContainer';
 
 const Root = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Switch>
-        <Redirect exact path="/" to={'login'}/>
-        <Route path="/login" component={LoginContainer} />
-        <Route path="/fabrica" component={App} />
-      </Switch>
+      <Route path="/login" component={LoginContainer} />
+      <Route path="/fabrica" component={App} />
     </ConnectedRouter>
   </Provider>
 );

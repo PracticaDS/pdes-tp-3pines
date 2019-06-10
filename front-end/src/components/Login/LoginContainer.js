@@ -6,6 +6,7 @@ import setUsuario from '../../actions/setUsuario';
 const mapStateToProps = (state, ownProps) => ({
   usuario: ownProps.usuario,
 });
+
 const method = (dispatch, usuario) => {
   dispatch(setUsuario(usuario))
 } 

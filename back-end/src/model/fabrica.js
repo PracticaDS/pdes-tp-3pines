@@ -35,19 +35,19 @@ const schema = mongoose.Schema({
     celdas: {
         type: [Celda]
     },
-    ganacia: {
+    ganancia: {
         type: Number
     },
 });
 
 schema.statics.guardarJuego = function(fabrica, usuario, callback) {
     return this.model('Fabrica')
-        .findOneAndUpdate({ nombreUsuario: usuario },
+        .findOneAndUpdate({ nombreUsuario: usuario.nombre },
             {
                 ancho: fabrica.ancho,
                 alto: fabrica.alto,
                 celdas: fabrica.celdas,
-                ganancia: fabrica.ganacia
+                ganancia: fabrica.ganancia
             } , { upsert: true, new: true, useFindAndModify: false }, callback);
 }
 

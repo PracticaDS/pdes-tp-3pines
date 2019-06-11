@@ -9,13 +9,6 @@ router.get('/', (req, res) => {
   res.json({ status: "ok" })
 });
 
-router.get('/:usuario', (req, res) => {
-  const nombreUsuario = req.params.usuario
-  app.obtenerJuegoDeUsuario(nombreUsuario)
-      .exec()
-      .then(fabrica => res.json({status: "ok", fabrica: fabrica}))
-})
-
 router.post('/login', (req, res) => {
   const nombre = req.body.usuario
   app.logearUsuario(nombre)

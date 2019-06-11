@@ -40,20 +40,37 @@ const schema = mongoose.Schema({
     },
 });
 
-schema.statics.guardarJuego = function(fabrica, usuario, callback) {
-    return this.model('Fabrica')
+schema.statics.guardarJuego = async function(fabrica, usuario, callback) {
+    return await this.model('Fabrica')
         .findOneAndUpdate({ nombreUsuario: usuario.nombre },
             {
                 ancho: fabrica.ancho,
                 alto: fabrica.alto,
                 celdas: fabrica.celdas,
                 ganancia: fabrica.ganancia
-            } , { upsert: true, new: true, useFindAndModify: false }, callback);
+            } , { upsert: true, new: true, useFindAndModify: false })
+        .exec();
 }
 
-schema.statics.obtenerJuegoDeUsuario = function(usuario) {
-    return this.model('Fabrica')
+schema.statics.obtenerJuegoDeUsuario = async function(usuario) {
+    return await this.model('Fabrica')
         .find({nombreUsuario: usuario})
+        .exec()
 }
+
+schema.statics.logearUsuario = async function(nombreUsuario) {
+    // TODO: enviar fabricaInicial para guardar al crear.
+    // const fabricaInicial = {
+    //     ancho: 10,
+    //     alto: 10,
+    //     celdas: [], // TODO: generar lista de celdas.
+    //     ganancia: 0,
+    //     nombreUsuario: nombreUsuario
+    // }
+    return await this.model('Fabrica')
+        .findOneAndUpdate({ nombreUsuario: nombreUsuario }, { nombreUsuario: nombreUsuario }, { upsert: true, new: true, useFindAndModify: false })
+        .exec()
+}
+
 
 export default mongoose.model('Fabrica', schema)

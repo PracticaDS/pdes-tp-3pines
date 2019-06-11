@@ -9,20 +9,18 @@ router.get('/', (req, res) => {
   res.json({ status: "ok" })
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   const nombre = req.body.usuario.nombre
-  app.logearUsuario(nombre)
-      .exec()
-      .then(fabrica => res.json({status: "ok", fabrica: fabrica}))
+  const fabrica = await app.logearUsuario(nombre)
+  res.json({status: "ok", fabrica})
 })
 
-router.post('/fabrica', (req, res) => {
+router.post('/fabrica', async (req, res) => {
   const usuario = req.body.usuario
   const fabrica  = req.body.fabrica
-
-  app.guardarJuego(fabrica, usuario, (error, response) => {
-    res.json({status: "ok"})
-  })
+  // TODO: sorround with TRY-CATCH
+  await app.guardarJuego(fabrica, usuario)
+  res.json({status: "ok"})
 })
 
 

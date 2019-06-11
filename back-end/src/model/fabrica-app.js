@@ -5,7 +5,7 @@ class FabricaApp {
   constructor() {}
   
   logearUsuario(nombreDeUsuario) {
-    return Fabrica.obtenerJuegoDeUsuario(nombreDeUsuario)
+    return Fabrica.logearUsuario(nombreDeUsuario)
   }
 
   guardarJuego(fabrica, usuario, callback){

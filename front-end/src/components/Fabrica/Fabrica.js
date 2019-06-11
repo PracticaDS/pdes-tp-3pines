@@ -19,7 +19,7 @@ export const Fabrica = (props) => {
         { props.celdas.map((celda, index) => <CeldaContainer key={index} celda={celda}/>)}
       </div>
       <div>
-          <button onClick={props.guardarJuego}>Guardar!</button>
+        <button onClick={props.guardarJuego}>Guardar!</button>
       </div>
     </div>
   )

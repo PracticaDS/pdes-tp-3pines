@@ -17,11 +17,10 @@ router.get('/:usuario', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  const nombre = req.body.usuario.nombre
-
-  app.logearUsuario(nombre, (error, response) => {
-    res.json({ status: "ok", nombre: nombre })
-  })
+  const nombre = req.body.usuario
+  app.logearUsuario(nombre)
+      .exec()
+      .then(fabrica => res.json({status: "ok", fabrica: fabrica}))
 })
 
 router.post('/fabrica', (req, res) => {

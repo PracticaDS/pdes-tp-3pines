@@ -4,8 +4,8 @@ import Fabrica from './fabrica'
 class FabricaApp {
   constructor() {}
   
-  logearUsuario(nombreDeUsuario, callback) {
-    Usuario.buscarOCrearPorNombre(nombreDeUsuario, callback)
+  logearUsuario(nombreDeUsuario) {
+    return Fabrica.obtenerJuegoDeUsuario(nombreDeUsuario)
   }
 
   guardarJuego(fabrica, usuario, callback){

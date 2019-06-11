@@ -13,7 +13,7 @@ class FabricaApp {
   }
 
   obtenerJuegoDeUsuario(usuario){
-    Fabrica.obtenerJuegoDeUsuario(usuario)
+    return Fabrica.obtenerJuegoDeUsuario(usuario)
   }
 }
 

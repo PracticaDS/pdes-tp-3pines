@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:usuario', (req, res) => {
-  Fabrica.find({nombreUsuario: req.params.usuario})
+  const nombreUsuario = req.params.usuario
+  app.obtenerJuegoDeUsuario(nombreUsuario)
       .exec()
       .then(fabrica => res.json({status: "ok", fabrica: fabrica}))
 })

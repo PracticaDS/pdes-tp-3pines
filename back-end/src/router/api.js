@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import FabricaApp from '../model/fabrica-app'
+import Fabrica from '../model/fabrica'
 
 const router = Router()
 const app = new FabricaApp()
@@ -7,6 +8,12 @@ const app = new FabricaApp()
 router.get('/', (req, res) => {
   res.json({ status: "ok" })
 });
+
+router.get('/:usuario', (req, res) => {
+  Fabrica.find({nombreUsuario: req.params.usuario})
+      .exec()
+      .then(fabrica => res.json({status: "ok", fabrica: fabrica}))
+})
 
 router.post('/login', (req, res) => {
   const nombre = req.body.usuario.nombre
@@ -24,5 +31,7 @@ router.post('/fabrica', (req, res) => {
     res.json({status: "ok"})
   })
 })
+
+
 
 export default router

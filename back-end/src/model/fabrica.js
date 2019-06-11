@@ -51,4 +51,10 @@ schema.statics.guardarJuego = function(fabrica, usuario, callback) {
             } , { upsert: true, new: true, useFindAndModify: false }, callback);
 }
 
+schema.statics.obtenerJuegoDeUsuario = function(usuario) {
+    return this.model('Fabrica')
+        .find({nombreUsuario: usuario})
+        .exec()
+}
+
 export default mongoose.model('Fabrica', schema)

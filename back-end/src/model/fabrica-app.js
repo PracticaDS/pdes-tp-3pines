@@ -11,6 +11,10 @@ class FabricaApp {
   guardarJuego(fabrica, usuario, callback){
     Fabrica.guardarJuego(fabrica, usuario, callback)
   }
+
+  obtenerJuegoDeUsuario(usuario){
+    return Fabrica.obtenerJuegoDeUsuario(usuario)
+  }
 }
 
 export default FabricaApp

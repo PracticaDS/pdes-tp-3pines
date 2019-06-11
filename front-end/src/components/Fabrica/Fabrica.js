@@ -18,6 +18,9 @@ export const Fabrica = (props) => {
       <div className='fabrica' style={ gridFromProps(props) }>
         { props.celdas.map((celda, index) => <CeldaContainer key={index} celda={celda}/>)}
       </div>
+      <div>
+        <button onClick={props.guardarJuego}>Guardar!</button>
+      </div>
     </div>
   )
 };

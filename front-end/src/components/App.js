@@ -8,7 +8,6 @@ import GananciaContainer from './Ganancia/GananciaContainer';
 
 
 const App = (match) => {
-  console.log(match)
   return (
     <div className="app-contenedor">
       <GananciaContainer id="ganancia"/>

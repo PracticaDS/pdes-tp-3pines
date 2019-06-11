@@ -15,17 +15,30 @@ describe('API', () => {
   })
 
   describe('/login', () => {
-    it('Logea el usuario y lo devuelve', (done) => {
+    it('Logea el usuario y devuelve una fabrica vacia', (done) => {
       request(app)
         .post('/api/login')
         .send({ usuario: { nombre: 'pepe' }})
         .expect(OK)
         .expect((res) => {
-            assert.include(res.body, {nombre: 'pepe'});
+          assert.include(res.body, []);
         })
         .end(done);
     })
   });
+
+  describe('/fabrica', () => {
+    it('Guarda la fabrica', (done) => {
+      request(app)
+        .post('/api/fabrica')
+        .send({ usuario: 'Pepe' , fabrica: {}})
+        .expect(OK)
+        .expect((res) => {
+          assert.include(res.body, []);
+        })
+        .end(done);
+    })
+  })
 })
 
 

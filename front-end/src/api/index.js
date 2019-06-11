@@ -47,6 +47,13 @@ const api = {
       `Error al logear usaurio.\nStackTrace: `
     )
   },
+
+  guardarJuego: async (usuario, fabrica) => {
+    return handleError(
+      async () => { return post('/fabrica', {usuario: usuario, fabrica: fabrica}) },
+      'Error al guardar el juego'
+    )
+  }
 }
 
 export default api

@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  const nombre = req.body.usuario
+  const nombre = req.body.usuario.nombre
   app.logearUsuario(nombre)
       .exec()
       .then(fabrica => res.json({status: "ok", fabrica: fabrica}))

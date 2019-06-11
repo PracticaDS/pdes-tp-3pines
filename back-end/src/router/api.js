@@ -16,4 +16,13 @@ router.post('/login', (req, res) => {
   })
 })
 
+router.post('/fabrica', (req, res) => {
+  const usuario = req.body.usuario
+  const fabrica  = req.body.fabrica
+
+  app.guardarJuego(fabrica, usuario, (error, response) => {
+    res.json({status: "ok"})
+  })
+})
+
 export default router

@@ -4,8 +4,8 @@ import Usuario from 'usuario'
 
 const schema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    usuario: {
-        type: Usuario,
+    nombreUsuario: {
+        type: String,
     },
     fabrica: {
         type: Fabrica

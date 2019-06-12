@@ -1,6 +1,6 @@
 describe("Una vez cargada la App", () => {
   beforeEach("Cargar la pagina de login", () => {
-    cy.visit("/login")
+    cy.loadLogin()
   });
 
   it("debe aparecer el formulario de login", () => {
@@ -8,17 +8,10 @@ describe("Una vez cargada la App", () => {
   })
 
   it("debe poder logearse", () => {
-    cy.get('input').click()
-      .type('Pepe')
-      .should('have.value', 'Pepe')
+    const nick = "Pepe"
+    cy.login(nick)
 
-    cy.get('button')
-      .click()
-
-    cy.location('pathname', { timeout: 10000 })
-      .should('eq', "/fabrica")
-
-    cy.get("#nombre-usuario")  
-      .should('contain', "Pepe")
+    cy.assertPath("/fabrica")
+    cy.assertContains("#nombre-usuario", nick)
   })
 })

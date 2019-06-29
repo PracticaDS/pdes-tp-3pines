@@ -37,3 +37,15 @@ Estamos usando `cypress` para nuestros tests **e2e**
 > [Documentación](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html#Add-a-test-file)
 
 > Podria faltarte la libreia `libgconf2-4`, instalarla usando `sudo apt -y install libgconf2-4`
+
+
+### Docker
+
+Parado en la carpeta del front correr:
+
+```
+docker build --tag=front-version-1 .
+docker run -p 5000:5000 front-version-1
+```
+
+Luego acceder a localhost:5000 y tendremos la app funcionando

@@ -2,7 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://practicads.github.io/pdes-tp-3pines/",
   "dependencies": {
     "connected-react-router": "^6.4.0",
     "enzyme": "^3.9.0",

@@ -8,10 +8,10 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN yarn global add serve
+
+RUN yarn run build
 
 EXPOSE 5000
-
-RUN yarn add global serve
 
 CMD ["serve", "-s", "build"]

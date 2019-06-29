@@ -41,11 +41,9 @@ Estamos usando `cypress` para nuestros tests **e2e**
 
 ### Docker
 
-Parado en la carpeta del front correr:
+Para levantar el container del back o del front hay que situarse en el root de esos proyectos y buildear la imagen (Dandole un nombre) y luego generar el container:
 
 ```
-docker build --tag=front-version-1 .
-docker run -p 5000:5000 front-version-1
+docker build --tag=back-o-front-version-1 .
+docker run -p 3001:3001 back-o-front-version-1
 ```
-
-Luego acceder a localhost:5000 y tendremos la app funcionando

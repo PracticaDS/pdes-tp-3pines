@@ -4,16 +4,16 @@ import Fabrica from './fabrica'
 class FabricaApp {
   constructor() {}
   
-  logearUsuario(nombreDeUsuario) {
-    return Fabrica.logearUsuario(nombreDeUsuario)
+  logearUsuario(nombreUsuario) {
+    return Fabrica.logearUsuario(nombreUsuario)
   }
 
-  guardarJuego(fabrica, usuario, callback){
-    Fabrica.guardarJuego(fabrica, usuario, callback)
+  guardarJuego(fabrica, nombreUsuario){
+    return Fabrica.guardarJuego(fabrica, nombreUsuario)
   }
 
-  obtenerJuegoDeUsuario(usuario){
-    return Fabrica.obtenerJuegoDeUsuario(usuario)
+  obtenerJuegoDeUsuario(nombreUsuario){
+    return Fabrica.obtenerJuegoDeUsuario(nombreUsuario)
   }
 }
 

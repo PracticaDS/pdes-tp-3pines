@@ -43,14 +43,14 @@ const handleError = async (accion, mensaje) => {
 const api = {
   logearUsuario: async (usuario) => {
     return handleError(
-      async () => { return post('/login', {usuario}) }, 
+      async () => { return post('/login', {usuario: {nombre: usuario}}) },
       `Error al logear usaurio.\nStackTrace: `
     )
   },
 
   guardarJuego: async (usuario, fabrica) => {
     return handleError(
-      async () => { return post('/fabrica', {usuario: usuario, fabrica: fabrica}) },
+      async () => { return post('/fabrica', {usuario: {nombre: usuario}, fabrica: fabrica}) },
       'Error al guardar el juego'
     )
   }

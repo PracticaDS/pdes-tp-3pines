@@ -3,7 +3,7 @@ import Ganancia from './Ganancia';
 
 const mapStateToProps = (state, ownProps) => ({
   ganancia: state.fabrica.ganancia,
-  usuario: state.fabrica.usuario.nombre,
+  usuario: state.fabrica.nombreUsuario,
 });
 
 export default connect(mapStateToProps, null)(Ganancia)

@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
   alto: state.fabrica.alto,
   ancho: state.fabrica.ancho,
   celdas: state.fabrica.celdas,
-  nombreUsuario: state.fabrica.usuario.nombre
+  nombreUsuario: state.fabrica.nombreUsuario
 })
 
 const doTick = dispatch => {

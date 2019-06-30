@@ -6,7 +6,7 @@ import { reducerDeCelda } from './celdas';
 import { MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER, EJECUTAR_ACCION, AGREGAR_MAQUINA, SELECCIONAR_CELDA } from '../actions/seleccionarCelda';
 import { MOSTRAR_MENSAJE_DE_ERROR } from '../actions/mostrarMensajeDeError';
 import { SETEAR_USUARIO } from '../actions/setUsuario';
-import {SETEAR_FABRICA} from "../actions/setearFabrica";
+import {SETEAR_FABRICA} from '../actions/setearFabrica';
 
 const ancho = 10
 const alto = 10

@@ -23,6 +23,8 @@ router.post('/fabrica', async (req, res) => {
   res.json({status: "ok"})
 })
 
+router.get('/')
+
 
 
 export default router

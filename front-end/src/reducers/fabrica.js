@@ -6,6 +6,7 @@ import { reducerDeCelda } from './celdas';
 import { MOVER_MAQUINA_DE_CELDA, SELECCIONAR_CELDA_DE_MAQUINA_A_MOVER, EJECUTAR_ACCION, AGREGAR_MAQUINA, SELECCIONAR_CELDA } from '../actions/seleccionarCelda';
 import { MOSTRAR_MENSAJE_DE_ERROR } from '../actions/mostrarMensajeDeError';
 import { SETEAR_USUARIO } from '../actions/setUsuario';
+import {SETEAR_FABRICA} from "../actions/setearFabrica";
 
 const ancho = 10
 const alto = 10
@@ -16,7 +17,7 @@ const estadoInicial = {
   celdas: generarCeldas(ancho, alto),
   moverDesdeCelda: null,
   ganancia: 0,
-  usuario: {},
+  nombreUsuario: '',
   mensajeDeError: ''
 }
 
@@ -89,7 +90,11 @@ function reducer(estado = estadoInicial, { type, payload }) {
     }
 
     case SETEAR_USUARIO: {
-      return {...estado, usuario: { nombre: payload }}
+      return {...estado, nombreUsuario: payload}
+    }
+
+    case SETEAR_FABRICA: {
+      return payload
     }
 
     case MOSTRAR_MENSAJE_DE_ERROR: {

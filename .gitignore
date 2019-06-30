@@ -17,6 +17,7 @@ e2e/node_modules
 
 # production
 /build
+front-end/build
 
 # misc
 .DS_Store

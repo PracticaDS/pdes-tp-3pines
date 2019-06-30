@@ -25,6 +25,7 @@ before_deploy:
       git tag $TRAVIS_TAG
 
       cd front-end/ && yarn run build
+      cd ..
     fi
 
 deploy:

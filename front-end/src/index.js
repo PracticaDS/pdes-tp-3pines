@@ -6,12 +6,13 @@ import './index.css';
 import App from './components/App.js';
 import store, { history } from './store';
 import { ConnectedRouter } from 'connected-react-router';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import LoginContainer from './components/Login/LoginContainer';
 
 const Root = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
+      <Redirect from="/" to="login"/>
       <Route path="/login" component={LoginContainer} />
       <Route path="/fabrica" component={App} />
     </ConnectedRouter>

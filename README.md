@@ -37,3 +37,13 @@ Estamos usando `cypress` para nuestros tests **e2e**
 > [Documentación](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html#Add-a-test-file)
 
 > Podria faltarte la libreia `libgconf2-4`, instalarla usando `sudo apt -y install libgconf2-4`
+
+
+### Docker
+
+Para levantar el container del back o del front hay que situarse en el root de esos proyectos y buildear la imagen (Dandole un nombre) y luego generar el container:
+
+```
+docker build --tag=back-o-front-version-1 .
+docker run -p 3001:3001 back-o-front-version-1
+```

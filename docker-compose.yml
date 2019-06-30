@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    image: traefik
+    command: --api --docker
+    ports: 
+      - "80:80"     # HTTP
+      - "344:344"   # HTTPS
+      - "8080:8080" # Dashboard
+    labels:
+      - "traefik.backend=Traefik" # Nombre en el Dashboard
+      - "traefik.frontend.entryPoints=http"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Monta a Docker para poder actualizar el Dashboard
+
+  backend:
+    image: unqpdes3pines/backend:latest
+    labels:
+      - "traefik.port=3001" # En que puerto levanta el Servicio según la IP que me asigne Traefik
+      - "traefik.backend=Api" # Nombre en el Dashboard
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=PathPrefix:/api;Host:localhost" # Regla para saber como llego a este Servicio
+      - "traefik.frontend.headers.customresponseheaders.Access-Control-Allow-Origin='*'"
+
+  frontend:
+    image: unqpdes3pines/frontend:latest
+    labels:
+      - "traefik.port=5000" # En que puerto levanta el Servicio según la IP que me asigne Traefik
+      - "traefik.backend=Webapp" # Nombre en el Dashboard
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=Host:localhost" # Regla para saber como llego a este Servicio
+      - "traefik.frontend.headers.customresponseheaders.Access-Control-Allow-Origin='*'"

@@ -28,6 +28,11 @@ before_deploy:
     fi
 
 deploy:
+  - provider: script
+    script: bash ./scripts/build-images.sh $DOCKER_USERNAME $DOCKER_PASSWORD
+    on:
+      branch: master
+
   - provider: pages
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
@@ -42,4 +47,4 @@ deploy:
     api_key: $GITHUB_TOKEN
     skip_cleanup: true
     on:
-      branch: master
+      branch: master    
